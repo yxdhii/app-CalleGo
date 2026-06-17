@@ -1,16 +1,43 @@
-# React + Vite
+# 🚦 CalleGo
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+CalleGo es una aplicación enfocada en mejorar la experiencia de movilidad urbana mediante herramientas de geolocalización, navegación y visualización de información en mapas interactivos.
 
-Currently, two official plugins are available:
+El proyecto se encuentra desarrollado con tecnologías modernas del ecosistema React y continúa evolucionando con nuevas funcionalidades y mejoras en la experiencia de usuario.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 🛠️ Tecnologías
 
-## React Compiler
+- React
+- Vite
+- React Router DOM
+- React Leaflet
+- OpenStreetMap
+- JavaScript
+- CSS
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 🚀 Instalación
 
-## Expanding the ESLint configuration
+Clonar el repositorio:
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```bash
+git clone https://github.com/yxdhii/app-CalleGo.git
+```
+
+Instalar dependencias:
+
+```bash
+pnpm install
+```
+
+Ejecutar el proyecto:
+
+```bash
+pnpm run dev
+```
+
+## 📌 Estado
+
+🚧 Proyecto en desarrollo.
+
+## 👩‍💻 Autor
+
+Yadhira Saavedra
