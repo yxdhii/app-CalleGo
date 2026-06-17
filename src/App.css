@@ -718,6 +718,7 @@ button:active {
 .callego-heatmap {
   background: #0f1117;
   color: #f0f0f5;
+  min-height: 100vh;
 }
 
 .real-map {
@@ -1042,6 +1043,7 @@ button:active {
 .route-map-screen {
   background: #eef5f9;
   color: #111827;
+  min-height: 100vh;
 }
 
 .route-map-top {
@@ -2690,24 +2692,30 @@ button:active {
 /* ===== PROFILE SCREEN ===== */
 .profile-screen {
   background: #0a0f1e;
-  padding: 20px;
+  padding: 24px;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
-  min-height: 100%;
+  min-height: 100vh;
+  color: white;
 }
 
 .profile-back-button {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
   background: transparent;
   border: none;
-  color: #7a7f96;
+  color: #ffffff;
   font-size: 14px;
+  font-weight: 500;
   cursor: pointer;
-  margin-bottom: 24px;
   padding: 0;
+  margin-bottom: 24px;
+}
+
+.profile-screen {
+  scrollbar-width: none;
 }
 
 /* Header */
@@ -2716,6 +2724,7 @@ button:active {
   align-items: center;
   gap: 14px;
   margin-bottom: 20px;
+  width: 100%;
 }
 
 .profile-avatar-wrap {
@@ -2799,6 +2808,7 @@ button:active {
   border-radius: 16px;
   padding: 16px;
   margin-bottom: 16px;
+  width: 100%;
 }
 
 .reputation-top {
@@ -2846,6 +2856,7 @@ button:active {
   grid-template-columns: 1fr 1fr;
   gap: 10px;
   margin-bottom: 18px;
+  width: 100%;
 }
 
 .stat-card {
@@ -2888,6 +2899,7 @@ button:active {
 /* My reports */
 .my-reports {
   margin-bottom: 18px;
+  width: 100%;
 }
 
 .my-reports-header {
@@ -2984,6 +2996,7 @@ button:active {
 /* Badges */
 .badges-section {
   margin-bottom: 18px;
+  width: 100%;
 }
 
 .badges-section h3 {
@@ -3035,6 +3048,7 @@ button:active {
   border-radius: 16px;
   padding: 4px 16px;
   margin-bottom: 16px;
+  width: 100%;
 }
 
 .menu-item {
@@ -3063,8 +3077,8 @@ button:active {
 /* Footer */
 .profile-footer {
   text-align: center;
-  margin-top: auto;
-  padding: 10px 0 20px;
+  margin-top: 24px;
+  padding-bottom: 20px;
 }
 
 .profile-footer p {
@@ -3197,6 +3211,10 @@ button:active {
 .photo-modal-save:disabled {
   opacity: 0.4;
   cursor: not-allowed;
+}
+
+.profile-screen .home-indicator {
+  display: none;
 }
 
 /* ==== privacy settings ==== */
@@ -3347,6 +3365,24 @@ button:active {
   font-size: 22px;
 }
 
+.privacy-link-content {
+  flex: 1;
+  text-align: left;
+}
+
+.privacy-link-content h4 {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.privacy-link-content p {
+  margin: 4px 0 0;
+  font-size: 12px;
+  color: #8d9ac7;
+}
+
 .delete-account-btn {
   width: 100%;
   height: 58px;
@@ -3362,4 +3398,63 @@ button:active {
   gap: 10px;
   cursor: pointer;
   margin-top: 24px;
+}
+
+/* delete account modal */
+
+.delete-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.delete-modal {
+  width: 90%;
+  max-width: 340px;
+  background: #1a1d27;
+  border-radius: 20px;
+  padding: 24px;
+  text-align: center;
+  color: white;
+}
+
+.delete-modal h3 {
+  margin-bottom: 12px;
+}
+
+.delete-modal p {
+  margin-bottom: 8px;
+}
+
+.delete-modal small {
+  color: #94a3b8;
+}
+
+.delete-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.cancel-btn,
+.confirm-delete-btn {
+  flex: 1;
+  height: 48px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+.cancel-btn {
+  background: #1e293b;
+  color: white;
+}
+
+.confirm-delete-btn {
+  background: #dc2626;
+  color: white;
 }

@@ -16,6 +16,7 @@ function Privacy() {
 
   const [shareLocation, setShareLocation] = useState(true);
   const [anonymousDefault, setAnonymousDefault] = useState(true);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
 
   return (
     <main className="screen privacy-screen">
@@ -80,7 +81,7 @@ function Privacy() {
             <Lock size={20} />
           </div>
 
-          <div>
+          <div className="privacy-link-content">
             <h4>Cambiar contraseña</h4>
             <p>Actualiza tu clave de acceso.</p>
           </div>
@@ -121,10 +122,44 @@ function Privacy() {
         </button>
       </section>
 
-      <button className="delete-account-btn">
+      <button
+        className="delete-account-btn"
+        onClick={() => setShowDeleteModal(true)}
+      >
         <Trash2 size={18} />
         Eliminar cuenta
       </button>
+
+      {showDeleteModal && (
+        <div className="delete-modal-overlay">
+          <div className="delete-modal">
+            <h3>Eliminar cuenta</h3>
+
+            <p>¿Estás seguro de que deseas eliminar tu cuenta?</p>
+
+            <small>Esta acción eliminará tus datos y reportes.</small>
+
+            <div className="delete-actions">
+              <button
+                className="cancel-btn"
+                onClick={() => setShowDeleteModal(false)}
+              >
+                Cancelar
+              </button>
+
+              <button
+                className="confirm-delete-btn"
+                onClick={() => {
+                  localStorage.clear();
+                  navigate("/");
+                }}
+              >
+                Eliminar
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
       <div className="home-indicator"></div>
     </main>
