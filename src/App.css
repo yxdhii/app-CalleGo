@@ -3179,6 +3179,35 @@ button:active {
   margin-bottom: 14px;
 }
 
+.profile-edit-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 14px 0;
+}
+
+.profile-edit-fields label {
+  color: #8d9ac7;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.profile-edit-fields input {
+  width: 100%;
+  height: 42px;
+  border-radius: 12px;
+  border: 1px solid #2e3244;
+  background: #111827;
+  color: white;
+  padding: 0 12px;
+  font-size: 13px;
+  outline: none;
+}
+
+.profile-edit-fields input:focus {
+  border-color: #3b82f6;
+}
+
 .photo-modal-actions {
   display: flex;
   gap: 10px;

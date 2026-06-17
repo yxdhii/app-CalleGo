@@ -93,10 +93,24 @@ function Profile() {
   };
 
   const confirmPhoto = () => {
+    localStorage.setItem("user_name", user.name);
+    localStorage.setItem("user_email", user.email);
+
+    const initials = user.name
+      .split(" ")
+      .map((w) => w[0])
+      .slice(0, 2)
+      .join("")
+      .toUpperCase();
+
+    localStorage.setItem("user_initials", initials);
+    setUser({ ...user, initials });
+
     if (previewPhoto) {
       localStorage.setItem("user_photo", previewPhoto);
       setPhoto(previewPhoto);
     }
+
     setShowPhotoModal(false);
     setPreviewPhoto(null);
   };
@@ -310,6 +324,22 @@ function Profile() {
             >
               <Camera size={16} /> Elegir foto
             </button>
+
+            <div className="profile-edit-fields">
+              <label>Nombre</label>
+              <input
+                type="text"
+                value={user.name}
+                onChange={(e) => setUser({ ...user, name: e.target.value })}
+              />
+
+              <label>Correo</label>
+              <input
+                type="email"
+                value={user.email}
+                onChange={(e) => setUser({ ...user, email: e.target.value })}
+              />
+            </div>
 
             <div className="photo-modal-actions">
               {photo && (
