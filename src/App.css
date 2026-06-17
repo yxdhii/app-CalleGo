@@ -2916,10 +2916,23 @@ button:active {
   margin: 0;
 }
 
-.my-reports-header span {
+.view-all-btn {
+  background: transparent;
+  border: none;
   color: #5b9cf6;
-  font-size: 12px;
+  font-size: 13px;
+  font-weight: 600;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0;
+}
+
+.view-all-btn svg {
+  width: 14px;
+  height: 14px;
+  color: #5b9cf6;
 }
 
 .empty-reports {

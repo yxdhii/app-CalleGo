@@ -59,16 +59,27 @@ function Profile() {
     setPoints(totalPoints);
   }, []);
 
-  const getLevel = (reportCount) => {
-    if (reportCount >= 20)
-      return { name: "Confiable", next: "Guardián del Barrio", max: 500 };
-    if (reportCount >= 5)
-      return { name: "Regular", next: "Confiable", max: 100 };
-    return { name: "Nuevo", next: "Regular", max: 20 };
+  const getLevel = (points) => {
+    if (points >= 500) {
+      return { name: "Guardián", next: "Nivel máximo", min: 500, max: 500 };
+    }
+
+    if (points >= 100) {
+      return { name: "Confiable", next: "Guardián", min: 100, max: 500 };
+    }
+
+    if (points >= 20) {
+      return { name: "Regular", next: "Confiable", min: 20, max: 100 };
+    }
+
+    return { name: "Nuevo", next: "Regular", min: 0, max: 20 };
   };
 
-  const level = getLevel(reports.length);
-  const progressPct = Math.min(100, (points / level.max) * 100);
+  const level = getLevel(points);
+  const progressPct =
+    level.max === level.min
+      ? 100
+      : Math.min(100, ((points - level.min) / (level.max - level.min)) * 100);
 
   const handleLogout = () => {
     localStorage.removeItem("user_email");
@@ -190,11 +201,11 @@ function Profile() {
         <div className="stat-card">
           <MapPin size={22} className="stat-icon green" />
           <h3>0</h3>
-          <p>km seguros</p>
+          <p>km recorridos</p>
         </div>
         <div className="stat-card">
           <Star size={22} className="stat-icon yellow" />
-          <h3>—</h3>
+          <h3>N/A</h3>
           <p>calificación</p>
         </div>
         <div className="stat-card">
@@ -207,7 +218,11 @@ function Profile() {
       <section className="my-reports">
         <div className="my-reports-header">
           <h3>Mis reportes</h3>
-          <span>Ver todos &gt;</span>
+
+          <button className="view-all-btn">
+            Ver todos
+            <ChevronRight size={16} />
+          </button>
         </div>
 
         {reports.length === 0 ? (
