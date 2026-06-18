@@ -253,7 +253,15 @@ function Profile() {
       </section>
 
       <section className="badges-section">
-        <h3>Insignias obtenidas</h3>
+        <div className="badges-section-header">
+          <h3>Insignias obtenidas</h3>
+
+          <button className="view-all-btn" onClick={() => navigate("/badges")}>
+            Ver todas
+            <ChevronRight size={16} />
+          </button>
+        </div>
+
         <div className="badges-grid">
           <div
             className={`badge-card ${reports.length >= 1 ? "earned" : "locked"}`}

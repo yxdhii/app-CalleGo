@@ -13,6 +13,7 @@ import TripComplete from "./pages/TripComplete";
 import Profile from "./pages/Profile";
 import Privacy from "./pages/Privacy";
 import MyReports from "./pages/MyReports";
+import Badges from "./pages/Badges";
 import "./App.css";
 
 function App() {
@@ -33,6 +34,7 @@ function App() {
         <Route path="/profile" element={<Profile />} />
         <Route path="/privacy" element={<Privacy />} />
         <Route path="/my-reports" element={<MyReports />} />
+        <Route path="/badges" element={<Badges />} />
         
       </Routes>
     </BrowserRouter>
