@@ -97,6 +97,18 @@ function ReportIncident() {
     updateLocation();
   }, []);
 
+  const getReportDate = () => {
+    const now = new Date();
+
+    return now.toLocaleString("es-PE", {
+      day: "2-digit",
+      month: "short",
+      year: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+    });
+  };
+
   const sendReport = () => {
     const fallbackCoords = [-12.0297, -77.0107];
     const newReport = {
@@ -109,7 +121,8 @@ function ReportIncident() {
         : localStorage.getItem("user_name") || "Usuario CalleGo",
       anonymous,
       photo: photoPreview,
-      date: "Hace unos segundos",
+      date: getReportDate(),
+      createdAt: new Date().toISOString(),
       status: "Pendiente de validación",
       points: 5,
       reactions: { useful: 0, surprised: 0, alert: 0 },

@@ -219,7 +219,10 @@ function Profile() {
         <div className="my-reports-header">
           <h3>Mis reportes</h3>
 
-          <button className="view-all-btn">
+          <button
+            className="view-all-btn"
+            onClick={() => navigate("/my-reports")}
+          >
             Ver todos
             <ChevronRight size={16} />
           </button>
@@ -236,6 +239,7 @@ function Profile() {
               <div className="report-info">
                 <p className="report-type">{r.type}</p>
                 <p className="report-location">{r.location}</p>
+                <p className="report-date">{r.date}</p>
               </div>
               <span className="report-points">+{r.points}pts</span>
               <span

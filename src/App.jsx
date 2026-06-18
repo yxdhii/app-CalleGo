@@ -12,6 +12,7 @@ import Navigation from "./pages/Navigation";
 import TripComplete from "./pages/TripComplete";
 import Profile from "./pages/Profile";
 import Privacy from "./pages/Privacy";
+import MyReports from "./pages/MyReports";
 import "./App.css";
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
         <Route path="/trip-complete" element={<TripComplete />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/privacy" element={<Privacy />} />
+        <Route path="/my-reports" element={<MyReports />} />
         
       </Routes>
     </BrowserRouter>

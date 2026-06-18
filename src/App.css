@@ -2969,6 +2969,12 @@ button:active {
   flex: 1;
 }
 
+.report-date {
+  font-size: 10px;
+  color: #7a7f96;
+  margin-top: 2px;
+}
+
 .report-type {
   color: #f0f0f5;
   font-size: 13px;
@@ -3499,4 +3505,243 @@ button:active {
 .confirm-delete-btn {
   background: #dc2626;
   color: white;
+}
+
+
+/* ===== MY REPORTS SCREEN ===== */
+
+.my-reports-screen {
+  min-height: 100vh;
+  background: #0a0f1e;
+  padding: 24px;
+  color: white;
+  overflow-y: auto;
+}
+
+.my-reports-top button {
+  background: transparent;
+  border: none;
+  color: white;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0;
+  margin-bottom: 22px;
+  cursor: pointer;
+}
+
+.my-reports-top h1 {
+  font-size: 30px;
+  margin: 0 0 6px;
+}
+
+.my-reports-top p {
+  color: #8d9ac7;
+  font-size: 13px;
+  margin: 0 0 18px;
+}
+
+.reports-filter {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+
+.reports-filter button {
+  flex: 1;
+  border: none;
+  border-radius: 999px;
+  padding: 9px 10px;
+  background: #1a1d27;
+  color: #8d9ac7;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.reports-filter button.active {
+  background: #2563eb;
+  color: white;
+}
+
+.reports-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.my-report-card {
+  width: 100%;
+  border: 1px solid rgba(82, 117, 255, 0.15);
+  background: #1a1d27;
+  border-radius: 18px;
+  padding: 14px;
+  display: flex;
+  gap: 12px;
+  text-align: left;
+  color: white;
+}
+
+.my-report-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 14px;
+  background: rgba(239, 68, 68, 0.15);
+  color: #ef4444;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.my-report-info {
+  flex: 1;
+}
+
+.my-report-title {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  align-items: center;
+}
+
+.my-report-title h3 {
+  margin: 0;
+  font-size: 14px;
+}
+
+.my-report-info p {
+  margin: 5px 0 0;
+  color: #8d9ac7;
+  font-size: 11px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.my-report-info small {
+  display: block;
+  margin-top: 7px;
+  color: #cbd5e1;
+  font-size: 12px;
+}
+
+.my-report-card strong {
+  color: #4dc98e;
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.status {
+  padding: 4px 8px;
+  border-radius: 999px;
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.status.pending {
+  background: rgba(241, 196, 15, 0.15);
+  color: #f1c40f;
+}
+
+.status.verified {
+  background: rgba(77, 201, 142, 0.15);
+  color: #4dc98e;
+}
+
+.reports-empty {
+  margin-top: 40px;
+  text-align: center;
+  color: #8d9ac7;
+}
+
+.reports-empty svg {
+  color: #3b82f6;
+  margin-bottom: 10px;
+}
+
+.report-detail-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 22px;
+}
+
+.report-detail-card {
+  position: relative;
+  width: 100%;
+  max-width: 340px;
+  background: #1a1d27;
+  border: 1px solid #2e3244;
+  border-radius: 22px;
+  padding: 22px;
+  color: white;
+}
+
+.detail-close-btn {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  background: #2e3244;
+  border: none;
+  color: white;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+
+.report-detail-card h2 {
+  margin: 0 0 18px;
+  font-size: 20px;
+}
+
+.detail-status-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+.detail-type {
+  color: #ef4444;
+  font-weight: 800;
+}
+
+.detail-text {
+  color: #cbd5e1;
+  font-size: 13px;
+  margin-bottom: 14px;
+}
+
+.detail-report-photo {
+  width: 100%;
+  height: 160px;
+  border-radius: 16px;
+  object-fit: cover;
+  margin-bottom: 14px;
+}
+
+.detail-no-photo {
+  height: 130px;
+  border-radius: 16px;
+  background: #111827;
+  color: #8d9ac7;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.detail-data p {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #8d9ac7;
+  font-size: 12px;
+  margin: 8px 0;
 }
