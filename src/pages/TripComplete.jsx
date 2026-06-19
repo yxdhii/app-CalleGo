@@ -5,6 +5,11 @@ import { CheckCircle, Star } from "lucide-react";
 function TripComplete() {
   const navigate = useNavigate();
   const [rating, setRating] = useState(0);
+  useEffect(() => {
+    const saved = JSON.parse(localStorage.getItem("callego_reports")) || [];
+    const currentPoints = saved.reduce((sum, r) => sum + (r.points || 0), 0);
+    localStorage.setItem("callego_trip_points", String(currentPoints + 2));
+  }, []);
 
   return (
     <main className="screen trip-complete-screen">

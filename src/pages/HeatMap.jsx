@@ -79,6 +79,7 @@ function HeatMap() {
   const [suggestions, setSuggestions] = useState([]);
   const [communityReports, setCommunityReports] = useState([]);
   const [selectedReport, setSelectedReport] = useState(null);
+  const [userPhoto, setUserPhoto] = useState(null);
 
   useEffect(() => {
     const loadReports = () => {
@@ -96,7 +97,27 @@ function HeatMap() {
           type: report.type,
           source: "user",
         }));
+      setUserPhoto(localStorage.getItem("user_photo"));
       setRiskPoints([...demoRiskPoints, ...reportPoints]);
+      setCommunityReports(
+        savedReports.map((r) => ({
+          ...r,
+          reporter: r.anonymous
+            ? "Ciudadano anónimo"
+            : r.reporter ||
+              localStorage.getItem("user_name") ||
+              "Usuario CalleGo",
+          date:
+            r.date ||
+            new Date(r.id).toLocaleString("es-PE", {
+              day: "numeric",
+              month: "short",
+              year: "numeric",
+              hour: "2-digit",
+              minute: "2-digit",
+            }),
+        })),
+      );
     };
 
     loadReports();
@@ -289,11 +310,15 @@ function HeatMap() {
 
         <button
           type="button"
-          className="map-square-btn"
+          className="map-square-btn profile-map-btn"
           title="Perfil"
           onClick={() => navigate("/profile")}
         >
-          <User size={21} />
+          {userPhoto ? (
+            <img src={userPhoto} alt="Perfil" />
+          ) : (
+            <User size={21} />
+          )}
         </button>
       </section>
 
@@ -325,14 +350,20 @@ function HeatMap() {
       </section>
 
       <section className="floating-map-actions">
-        <button type="button">
-          <Settings size={18} />
-          Alertas
+        <button
+          type="button"
+          title="Alertas de proximidad"
+          onClick={() => navigate("/alerts")}
+        >
+          <Bell size={20} />
         </button>
 
-        <button type="button" onClick={() => setShowInbox(true)}>
-          <Bell size={18} />
-          Avisos
+        <button
+          type="button"
+          title="Mi ubicación"
+          onClick={() => setPosition(defaultPosition)}
+        >
+          <Navigation size={20} />
         </button>
       </section>
 
@@ -385,7 +416,7 @@ function HeatMap() {
               })
             }
           >
-            <Navigation size={18} />
+            <MapPin size={18} />
             Iniciar ruta segura
           </button>
         </div>
@@ -469,13 +500,13 @@ function HeatMap() {
       )}
 
       {showInbox && (
-        <section className="reports-inbox reports-feed">
+        <section className="reports-inbox">
+          <div className="sheet-handle"></div>
           <div className="inbox-header">
             <div>
               <p>Bandeja comunitaria</p>
               <h2>Reportes cercanos</h2>
             </div>
-
             <button type="button" onClick={() => setShowInbox(false)}>
               ×
             </button>

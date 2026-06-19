@@ -65,7 +65,7 @@ function Alerts() {
   return (
     <main className="screen alerts-screen">
       <header className="alerts-header">
-        <button type="button" onClick={() => navigate("/notifications")}>
+        <button type="button" onClick={() => navigate(-1)}>
           <ChevronLeft size={22} />
           Volver
         </button>
