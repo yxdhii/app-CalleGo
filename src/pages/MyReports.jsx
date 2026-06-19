@@ -14,21 +14,61 @@ function MyReports() {
   const [reports, setReports] = useState([]);
   const [selectedReport, setSelectedReport] = useState(null);
   const [filter, setFilter] = useState("all");
+  const [validationToast, setValidationToast] = useState(null);
 
   useEffect(() => {
     const savedReports =
       JSON.parse(localStorage.getItem("callego_reports")) || [];
+
     setReports(savedReports);
+
+    const reportToValidate = savedReports.find(
+      (report) => report.status !== "Verificado",
+    );
+
+    if (!reportToValidate) return;
+
+    const timer = setTimeout(() => {
+      const currentReports =
+        JSON.parse(localStorage.getItem("callego_reports")) || [];
+
+      const updatedReports = currentReports.map((report) =>
+        report.id === reportToValidate.id
+          ? {
+              ...report,
+              status: "Verificado",
+              points: 5,
+            }
+          : report,
+      );
+
+      localStorage.setItem("callego_reports", JSON.stringify(updatedReports));
+      setReports(updatedReports);
+
+      setValidationToast({
+        type: reportToValidate.type,
+        location: reportToValidate.location,
+      });
+
+      setTimeout(() => {
+        setValidationToast(null);
+      }, 3500);
+    }, 3000);
+
+    return () => clearTimeout(timer);
   }, []);
 
-  const filteredReports =
-    filter === "all"
-      ? reports
-      : reports.filter((r) =>
-          filter === "pending"
-            ? r.status?.includes("Pendiente")
-            : !r.status?.includes("Pendiente")
-        );
+  const filteredReports = reports.filter((report) => {
+    if (filter === "pending") {
+      return report.status !== "Verificado";
+    }
+
+    if (filter === "verified") {
+      return report.status === "Verificado";
+    }
+
+    return true;
+  });
 
   const totalPoints = reports.reduce((sum, r) => sum + (r.points || 0), 0);
 
@@ -41,7 +81,9 @@ function MyReports() {
         </button>
 
         <h1>Mis reportes</h1>
-        <p>{reports.length} reportes · {totalPoints} puntos ganados</p>
+        <p>
+          {reports.length} reportes · {totalPoints} puntos ganados
+        </p>
       </header>
 
       <section className="reports-filter">
@@ -51,12 +93,14 @@ function MyReports() {
         >
           Todos
         </button>
+
         <button
           className={filter === "pending" ? "active" : ""}
           onClick={() => setFilter("pending")}
         >
-          Pendientes
+          En revisión
         </button>
+
         <button
           className={filter === "verified" ? "active" : ""}
           onClick={() => setFilter("verified")}
@@ -86,16 +130,15 @@ function MyReports() {
               <div className="my-report-info">
                 <div className="my-report-title">
                   <h3>{report.type}</h3>
+
                   <span
                     className={
-                      report.status?.includes("Pendiente")
-                        ? "status pending"
-                        : "status verified"
+                      report.status === "Verificado"
+                        ? "status verified"
+                        : "status pending"
                     }
                   >
-                    {report.status?.includes("Pendiente")
-                      ? "Pendiente"
-                      : "Verificado"}
+                    {report.status || "En revisión"}
                   </span>
                 </div>
 
@@ -134,16 +177,15 @@ function MyReports() {
 
             <div className="detail-status-row">
               <span className="detail-type">{selectedReport.type}</span>
+
               <span
                 className={
-                  selectedReport.status?.includes("Pendiente")
-                    ? "status pending"
-                    : "status verified"
+                  selectedReport.status === "Verificado"
+                    ? "status verified"
+                    : "status pending"
                 }
               >
-                {selectedReport.status?.includes("Pendiente")
-                  ? "Pendiente"
-                  : "Verificado"}
+                {selectedReport.status || "En revisión"}
               </span>
             </div>
 
@@ -169,14 +211,26 @@ function MyReports() {
                 <MapPin size={15} />
                 {selectedReport.location}
               </p>
+
               <p>
                 <Clock size={15} />
                 {selectedReport.date || "Sin fecha"}
               </p>
+
               <p>+{selectedReport.points || 0} puntos obtenidos</p>
             </div>
           </article>
         </section>
+      )}
+
+      {validationToast && (
+        <div className="validation-toast">
+          <strong>Reporte validado</strong>
+          <p>
+            Tu reporte de {validationToast.type} fue confirmado. +5 pts
+            obtenidos.
+          </p>
+        </div>
       )}
     </main>
   );

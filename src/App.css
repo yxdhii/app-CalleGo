@@ -1811,48 +1811,73 @@ button:active {
 .report-success-screen {
   background: #081126;
   color: white;
-  padding: 62px 32px 18px;
+  padding: 30px 32px 18px;
   position: relative;
   text-align: center;
+  overflow-y: auto;
+  scrollbar-width: none;
+  animation: successFadeIn 0.45s ease;
+}
+
+.report-success-screen::-webkit-scrollbar {
+  display: none;
+}
+
+.success-main-content {
+  width: 100%;
+}
+
+.success-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 22px;
 }
 
 .success-check {
-  width: 100px;
-  height: 100px;
-  margin: 0 auto 32px;
-  border-radius: 50%;
-  background: linear-gradient(180deg, #35ef4f, #0ea52d);
+  width: 78px;
+  height: 78px;
+  margin: 8px auto 18px;
+  border-radius: 24px;
   display: flex;
   align-items: center;
   justify-content: center;
   color: white;
-  box-shadow: 0 18px 35px rgba(34, 197, 94, 0.28);
+  animation: popCheck 0.55s ease;
 }
 
-.report-success-screen h1 {
-  font-size: 22px;
+.success-check.published {
+  background: linear-gradient(135deg, #2563eb, #38bdf8);
+  box-shadow: 0 18px 35px rgba(56, 189, 248, 0.24);
+}
+
+.success-header h1 {
+  font-size: 23px;
   font-weight: 900;
+  margin: 0 0 6px;
 }
 
-.report-success-screen > p {
-  margin: 10px auto 34px;
-  width: 230px;
-  font-size: 12px;
+.success-header p {
+  margin: 0;
+  width: 270px;
+  font-size: 13px;
   color: #cbd5e1;
-  line-height: 1.3;
+  line-height: 1.35;
 }
 
 .success-points-card,
 .reputation-card,
-.report-summary-card {
+.report-summary-card,
+.validation-info-card {
   background: #111827;
   border: 1px solid #293653;
   border-radius: 18px;
   box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18);
+  animation: cardUp 0.45s ease both;
 }
 
 .success-points-card {
-  height: 78px;
+  min-height: 78px;
   padding: 14px 18px;
   display: grid;
   grid-template-columns: 42px 1fr auto;
@@ -1881,7 +1906,7 @@ button:active {
 .success-points-card h2 {
   margin-top: 2px;
   font-size: 25px;
-  color: #22c55e;
+  color: #94a3b8;
 }
 
 .success-points-card article {
@@ -1892,6 +1917,7 @@ button:active {
   display: block;
   margin-top: 5px;
   font-size: 13px;
+  color: #facc15;
 }
 
 .reputation-card {
@@ -1952,6 +1978,31 @@ button:active {
   color: #38bdf8;
 }
 
+.badge-unlocked-card {
+  margin-top: 18px;
+  background: rgba(250, 204, 21, 0.12);
+  border: 1px solid rgba(250, 204, 21, 0.35);
+  border-radius: 18px;
+  padding: 14px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #facc15;
+  text-align: left;
+  animation: cardUp 0.45s ease both;
+}
+
+.badge-unlocked-card strong {
+  color: #facc15;
+  font-size: 13px;
+}
+
+.badge-unlocked-card p {
+  margin: 3px 0 0;
+  color: #fde68a;
+  font-size: 12px;
+}
+
 .report-summary-card {
   margin-top: 18px;
   padding: 14px;
@@ -1969,6 +2020,7 @@ button:active {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
 }
 
 .report-summary-card h3 {
@@ -1988,40 +2040,90 @@ button:active {
   color: #94a3b8;
 }
 
+.validation-info-card {
+  margin-top: 14px;
+  padding: 13px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #60a5fa;
+  text-align: left;
+}
+
+.validation-info-card p {
+  color: #cbd5e1;
+  font-size: 11px;
+  line-height: 1.35;
+}
+
 .success-main-btn,
 .success-secondary-btn {
   width: 100%;
-  height: 52px;
-  border: none;
+  height: 50px;
   border-radius: 16px;
-  font-size: 17px;
-  font-weight: 900;
+  font-size: 16px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
 }
 
 .success-main-btn {
-  margin-top: 28px;
-  background: linear-gradient(90deg, #1d4ed8, #4f9cff);
+  margin-top: 22px;
+  border: none;
+  background: linear-gradient(90deg, #2563eb, #3b82f6);
   color: white;
+  box-shadow: 0 10px 22px rgba(37, 99, 235, 0.25);
 }
 
 .success-secondary-btn {
   margin-top: 10px;
-  background: #111827;
+  background: transparent;
   border: 1px solid #293653;
   color: #cbd5e1;
 }
 
 .report-success-screen .home-indicator {
-  position: absolute;
-  bottom: 14px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 120px;
-  height: 5px;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.35);
+  display: none;
 }
 
+@keyframes successFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes popCheck {
+  0% {
+    transform: scale(0.65);
+    opacity: 0;
+  }
+  70% {
+    transform: scale(1.08);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes cardUp {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 /* bandeja de reportes */
 
 .reports-feed {
@@ -3761,6 +3863,55 @@ button:active {
   margin: 8px 0;
 }
 
+/* ===== VALIDATION TOAST ===== */
+
+.validation-toast {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - 40px);
+  max-width: 340px;
+
+  background: #111827;
+  border: 1px solid rgba(34, 197, 94, 0.35);
+  border-radius: 18px;
+
+  padding: 14px 16px;
+
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+
+  z-index: 999;
+  animation: toastUp 0.35s ease;
+}
+
+.validation-toast strong {
+  display: block;
+  color: #22c55e;
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.validation-toast p {
+  margin: 0;
+  color: #cbd5e1;
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+@keyframes toastUp {
+  from {
+    opacity: 0;
+    transform: translate(-50%, 20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
+
 /*badges details*/
 
 .badges-screen {
@@ -3867,4 +4018,175 @@ button:active {
   .badges-screen::-webkit-scrollbar {
     display: none;
   }
+}
+
+
+/* ===== HELP SCREEN ===== */
+
+.help-screen {
+  min-height: 100%;
+  background: #0a0f1e;
+  padding: 24px;
+  color: white;
+  overflow-y: auto;
+  scrollbar-width: none;
+}
+
+.help-screen::-webkit-scrollbar {
+  display: none;
+}
+
+.help-header {
+  margin-bottom: 24px;
+}
+
+.help-header button {
+  background: none;
+  border: none;
+  color: white;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 22px;
+  cursor: pointer;
+  padding: 0;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.help-header h1 {
+  font-size: 30px;
+  margin: 0 0 8px;
+}
+
+.help-header p {
+  color: #8d9ac7;
+  font-size: 13px;
+  margin: 0;
+}
+
+.help-card {
+  background: #1a1d27;
+  border: 1px solid rgba(82, 117, 255, 0.15);
+  border-radius: 20px;
+  padding: 18px;
+  margin-bottom: 18px;
+}
+
+.help-card h3 {
+  color: #6d83c8;
+  font-size: 12px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.help-item {
+  width: 100%;
+  min-height: 56px;
+  border: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background: transparent;
+  color: white;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-align: left;
+  cursor: pointer;
+  padding: 12px 0;
+}
+
+.help-item:last-child {
+  border-bottom: none;
+}
+
+.help-item span {
+  flex: 1;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.help-item svg {
+  color: #8d9ac7;
+}
+
+.help-contact-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.help-contact-icon.blue {
+  background: rgba(37, 99, 235, 0.15);
+  color: #3b82f6;
+}
+
+.help-contact-icon.green {
+  background: rgba(34, 197, 94, 0.15);
+  color: #22c55e;
+}
+
+/* FAQ MODAL */
+
+.faq-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+  padding: 24px;
+}
+
+.faq-modal {
+  position: relative;
+  width: 100%;
+  max-width: 330px;
+  background: #1a1d27;
+  border: 1px solid #2e3244;
+  border-radius: 22px;
+  padding: 24px;
+  color: white;
+}
+
+.faq-close-icon {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 30px;
+  height: 30px;
+  border: none;
+  border-radius: 50%;
+  background: #2e3244;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.faq-modal h3 {
+  font-size: 18px;
+  margin: 0 36px 12px 0;
+}
+
+.faq-modal p {
+  color: #94a3b8;
+  line-height: 1.5;
+  font-size: 14px;
+  margin: 0;
+}
+
+.faq-close-btn {
+  width: 100%;
+  height: 48px;
+  margin-top: 22px;
+  border: none;
+  border-radius: 14px;
+  background: #2563eb;
+  color: white;
+  font-weight: 700;
 }

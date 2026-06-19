@@ -76,10 +76,7 @@ function Profile() {
   };
 
   const level = getLevel(points);
-  const progressPct =
-    level.max === level.min
-      ? 100
-      : Math.min(100, ((points - level.min) / (level.max - level.min)) * 100);
+  const progressPct = Math.min(100, (points / level.max) * 100);
 
   const handleLogout = () => {
     localStorage.removeItem("user_email");
@@ -243,9 +240,11 @@ function Profile() {
               </div>
               <span className="report-points">+{r.points}pts</span>
               <span
-                className={`report-status ${r.status?.includes("Pendiente") ? "pending" : "verified"}`}
+                className={`report-status ${
+                  r.status === "Verificado" ? "verified" : "pending"
+                }`}
               >
-                {r.status?.includes("Pendiente") ? "Pendiente" : "Verificado"}
+                {r.status || "En revisión"}
               </span>
             </div>
           ))

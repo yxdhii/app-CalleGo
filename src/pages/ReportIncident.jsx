@@ -123,8 +123,8 @@ function ReportIncident() {
       photo: photoPreview,
       date: getReportDate(),
       createdAt: new Date().toISOString(),
-      status: "Pendiente de validación",
-      points: 5,
+      status: "En revisión",
+      points: 0,
       reactions: { useful: 0, surprised: 0, alert: 0 },
     };
 
@@ -134,10 +134,15 @@ function ReportIncident() {
       JSON.stringify([newReport, ...reports]),
     );
 
-    const currentPoints = Number(localStorage.getItem("callego_points")) || 320;
-    localStorage.setItem("callego_points", currentPoints + 5);
+    /*const currentPoints = Number(localStorage.getItem("callego_points")) || 320;
+    localStorage.setItem("callego_points", currentPoints + 5);*/
 
     navigate("/report-success");
+    {
+      state: {
+        report: newReport;
+      }
+    }
   };
 
   return (

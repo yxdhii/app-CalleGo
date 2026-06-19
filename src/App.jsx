@@ -14,6 +14,7 @@ import Profile from "./pages/Profile";
 import Privacy from "./pages/Privacy";
 import MyReports from "./pages/MyReports";
 import Badges from "./pages/Badges";
+import Help from "./pages/Help";
 import "./App.css";
 
 function App() {
@@ -35,7 +36,7 @@ function App() {
         <Route path="/privacy" element={<Privacy />} />
         <Route path="/my-reports" element={<MyReports />} />
         <Route path="/badges" element={<Badges />} />
-        
+        <Route path="/help" element={<Help />} />
       </Routes>
     </BrowserRouter>
   );
