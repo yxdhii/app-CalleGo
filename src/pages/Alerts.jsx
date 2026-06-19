@@ -51,7 +51,7 @@ function Alerts() {
   const saveSettings = () => {
     localStorage.setItem(
       "callego_alerts_settings",
-      JSON.stringify({ radius, riskLevel, types })
+      JSON.stringify({ radius, riskLevel, types }),
     );
 
     setSavedMessage(true);
@@ -112,7 +112,9 @@ function Alerts() {
               className={`alert-type-row ${types[item.key] ? "active" : ""}`}
               onClick={() => toggleType(item.key)}
             >
-              <span className={`check-box ${types[item.key] ? "checked" : ""}`} />
+              <span
+                className={`check-box ${types[item.key] ? "checked" : ""}`}
+              />
 
               <span className={`type-icon ${item.color}`}>
                 <Icon size={19} />
@@ -154,8 +156,7 @@ function Alerts() {
         <div>
           <strong>Vista previa</strong>
           <p>
-            Robo reportado a 800 m de tu ubicación. Nivel de riesgo{" "}
-            {riskLevel}.
+            Robo reportado a 800 m de tu ubicación. Nivel de riesgo {riskLevel}.
           </p>
         </div>
       </section>

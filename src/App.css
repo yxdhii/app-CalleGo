@@ -780,7 +780,7 @@ button:active {
   height: 100%;
   object-fit: cover;
   border-radius: 14px;
-  border: 2px solid rgba(255,255,255,0.15);
+  border: 2px solid rgba(255, 255, 255, 0.15);
 }
 
 .profile-map-btn {
@@ -1070,6 +1070,14 @@ button:active {
   gap: 12px;
   text-align: left;
   color: white;
+}
+
+.social-avatar img,
+.detail-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
 }
 
 .social-avatar {
@@ -2501,6 +2509,15 @@ button:active {
   font-size: 13px;
 }
 
+.detail-location,
+.social-report-card .detail-location {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #8d9ac7;
+  font-size: 12px;
+}
+
 .social-report-content p {
   margin-top: 5px;
   font-size: 12px;
@@ -2701,8 +2718,40 @@ button:active {
   cursor: pointer;
 }
 
+.detail-location {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #8d9ac7;
+  font-size: 12px;
+  margin-top: 10px;
+}
+
+.detail-location svg {
+  color: #ff4d8d;
+  flex-shrink: 0;
+}
+
 .detail-reactions button:hover {
   background: #3a3f56;
+}
+
+.detail-reactions button.active.useful {
+  background: rgba(231, 76, 60, 0.18);
+  color: #ff6b5f;
+  border-color: rgba(231, 76, 60, 0.45);
+}
+
+.detail-reactions button.active.confirmed {
+  background: rgba(77, 201, 142, 0.18);
+  color: #4dc98e;
+  border-color: rgba(77, 201, 142, 0.45);
+}
+
+.detail-reactions button.active.alert {
+  background: rgba(241, 196, 15, 0.16);
+  color: #f1c40f;
+  border-color: rgba(241, 196, 15, 0.45);
 }
 
 .report-detail-modal .home-indicator {

@@ -26,6 +26,9 @@ import {
   ThumbsUp,
   Eye,
   ShieldAlert,
+  Heart,
+  CheckCircle2,
+  AlertOctagon,
 } from "lucide-react";
 
 const defaultPosition = [-12.0297, -77.0107];
@@ -80,6 +83,9 @@ function HeatMap() {
   const [communityReports, setCommunityReports] = useState([]);
   const [selectedReport, setSelectedReport] = useState(null);
   const [userPhoto, setUserPhoto] = useState(null);
+  const [myReactions, setMyReactions] = useState(
+    JSON.parse(localStorage.getItem("callego_my_reactions")) || {},
+  );
 
   useEffect(() => {
     const loadReports = () => {
@@ -124,6 +130,61 @@ function HeatMap() {
     window.addEventListener("focus", loadReports);
     return () => window.removeEventListener("focus", loadReports);
   }, [showInbox]);
+
+  const handleReaction = (reportId, newType) => {
+    const currentType = myReactions[reportId];
+    const finalType = currentType === newType ? null : newType;
+
+    const updateReport = (report) => {
+      if (report.id !== reportId) return report;
+
+      const reactions = {
+        useful: report.reactions?.useful || 0,
+        surprised: report.reactions?.surprised || 0,
+        alert: report.reactions?.alert || 0,
+      };
+
+      if (currentType) {
+        reactions[currentType] = Math.max(0, reactions[currentType] - 1);
+      }
+
+      if (finalType) {
+        reactions[finalType] = reactions[finalType] + 1;
+      }
+
+      return {
+        ...report,
+        reactions,
+      };
+    };
+
+    const updatedMyReactions = {
+      ...myReactions,
+      [reportId]: finalType,
+    };
+
+    if (!finalType) {
+      delete updatedMyReactions[reportId];
+    }
+
+    setMyReactions(updatedMyReactions);
+    localStorage.setItem(
+      "callego_my_reactions",
+      JSON.stringify(updatedMyReactions),
+    );
+
+    setSelectedReport((prev) => (prev ? updateReport(prev) : prev));
+
+    setCommunityReports((prev) => prev.map(updateReport));
+
+    const savedReports =
+      JSON.parse(localStorage.getItem("callego_reports")) || [];
+
+    localStorage.setItem(
+      "callego_reports",
+      JSON.stringify(savedReports.map(updateReport)),
+    );
+  };
 
   const getSuggestions = async (text) => {
     setQuery(text);
@@ -525,7 +586,11 @@ function HeatMap() {
                 onClick={() => setSelectedReport(report)}
               >
                 <div className="social-avatar">
-                  <UserCircle2 size={28} />
+                  {!report.anonymous && userPhoto ? (
+                    <img src={userPhoto} alt="Perfil" />
+                  ) : (
+                    <UserCircle2 size={28} />
+                  )}
                 </div>
 
                 <div className="social-report-content">
@@ -535,7 +600,10 @@ function HeatMap() {
 
                   <p>{report.description || "Sin descripción adicional"}</p>
 
-                  <span>📍 {report.location}</span>
+                  <p className="detail-location">
+                    <MapPin size={14} />
+                    {report.location}
+                  </p>
 
                   <div className="report-reactions">
                     <small>
@@ -576,7 +644,11 @@ function HeatMap() {
             <section className="detail-post-card">
               <div className="detail-user">
                 <div className="detail-avatar">
-                  <UserCircle2 size={28} />
+                  {!selectedReport.anonymous && userPhoto ? (
+                    <img src={userPhoto} alt="Perfil" />
+                  ) : (
+                    <UserCircle2 size={28} />
+                  )}
                 </div>
 
                 <article>
@@ -604,26 +676,60 @@ function HeatMap() {
                 </div>
               )}
 
-              <p className="detail-location">📍 {selectedReport.location}</p>
+              <p className="detail-location">
+                <MapPin size={14} />
+                {selectedReport.location}
+              </p>
 
               <div className="detail-stats">
-                <span>👍 0</span>
-                <span>😮 0</span>
-                <span>🚨 0 alertas</span>
+                <span style={{ display: "flex", alignItems: "center", gap: 4 }}>
+                  <Heart size={13} color="#e74c3c" fill="#e74c3c" />
+                  {selectedReport.reactions?.useful || 0}
+                </span>
+                <span style={{ display: "flex", alignItems: "center", gap: 4 }}>
+                  <CheckCircle2 size={13} color="#4dc98e" />
+                  {selectedReport.reactions?.surprised || 0}
+                </span>
+                <span style={{ display: "flex", alignItems: "center", gap: 4 }}>
+                  <AlertOctagon size={13} color="#f1c40f" />
+                  {selectedReport.reactions?.alert || 0}
+                </span>
               </div>
+
               <div className="detail-reactions">
-                <button>
-                  <ThumbsUp size={16} />
+                <button
+                  className={
+                    myReactions[selectedReport.id] === "useful"
+                      ? "active useful"
+                      : ""
+                  }
+                  onClick={() => handleReaction(selectedReport.id, "useful")}
+                >
+                  <Heart size={15} />
                   Útil
                 </button>
 
-                <button>
-                  <Eye size={16} />
+                <button
+                  className={
+                    myReactions[selectedReport.id] === "surprised"
+                      ? "active confirmed"
+                      : ""
+                  }
+                  onClick={() => handleReaction(selectedReport.id, "surprised")}
+                >
+                  <CheckCircle2 size={15} />
                   Confirmar
                 </button>
 
-                <button>
-                  <ShieldAlert size={16} />
+                <button
+                  className={
+                    myReactions[selectedReport.id] === "alert"
+                      ? "active alert"
+                      : ""
+                  }
+                  onClick={() => handleReaction(selectedReport.id, "alert")}
+                >
+                  <AlertOctagon size={15} />
                   Alerta
                 </button>
               </div>
