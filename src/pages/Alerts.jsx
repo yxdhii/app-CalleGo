@@ -58,7 +58,7 @@ function Alerts() {
 
     setTimeout(() => {
       setSavedMessage(false);
-      navigate("/notifications");
+      navigate(-1);
     }, 1200);
   };
 

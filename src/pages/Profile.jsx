@@ -171,22 +171,26 @@ function Profile() {
       </section>
 
       <section className="reputation-card">
-        <div className="reputation-top">
-          <span>Progreso de reputación</span>
-          <span className="reputation-pts">
-            {points}/{level.max} pts
-          </span>
+        <div className="rep-header">
+          <span>Tu nivel de reputación</span>
+          <b>{level.name}</b>
         </div>
-        <div className="progress-bar-bg">
-          <div
-            className="progress-bar-fill"
-            style={{ width: `${progressPct}%` }}
-          ></div>
+
+        <div className="rep-progress">
+          <div style={{ width: `${progressPct}%` }}></div>
         </div>
-        <div className="reputation-bottom">
+
+        <div className="rep-labels">
           <span>{level.name}</span>
-          <span className="reputation-next">{level.next}</span>
+          <span>{level.next}</span>
         </div>
+
+        <p>
+          Progreso de reputación
+          <strong>
+            {points}/{level.max} pts
+          </strong>
+        </p>
       </section>
 
       <section className="stats-grid">

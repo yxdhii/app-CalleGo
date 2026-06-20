@@ -17,6 +17,27 @@ function ReportSuccess() {
   const reports = JSON.parse(localStorage.getItem("callego_reports")) || [];
   const isFirstReport = reports.length === 1;
 
+  const points = reports.reduce((sum, r) => sum + (r.points || 0), 0);
+
+  const getLevel = (points) => {
+    if (points >= 500) {
+      return { name: "Guardián", next: "Nivel máximo", max: 500 };
+    }
+
+    if (points >= 100) {
+      return { name: "Confiable", next: "Guardián", max: 500 };
+    }
+
+    if (points >= 20) {
+      return { name: "Regular", next: "Confiable", max: 100 };
+    }
+
+    return { name: "Nuevo", next: "Regular", max: 20 };
+  };
+
+  const level = getLevel(points);
+  const progressPct = Math.min(100, (points / level.max) * 100);
+
   return (
     <main className="screen report-success-screen">
       <section className="success-main-content">
@@ -40,7 +61,7 @@ function ReportSuccess() {
 
           <div>
             <span>Puntos pendientes</span>
-            <h2>0 pts</h2>
+            <h2>5 pts</h2>
           </div>
 
           <article>
@@ -51,23 +72,24 @@ function ReportSuccess() {
 
         <section className="reputation-card">
           <div className="rep-header">
-            <span>Tu nivel de reputación</span>
-            <b>Nuevo</b>
+            <span>Tu reputación actual</span>
+            <b>{level.name}</b>
           </div>
 
           <div className="rep-progress">
-            <div style={{ width: "0%" }}></div>
+            <div style={{ width: `${progressPct}%` }}></div>
           </div>
 
           <div className="rep-labels">
-            <span>Nuevo</span>
-            <span>Regular</span>
-            <span>Confiable</span>
+            <span>{level.name}</span>
+            <span>{level.next}</span>
           </div>
 
           <p>
-            Progreso hacia regular
-            <strong>0/20 pts</strong>
+            Progreso de reputación
+            <strong>
+              {points}/{level.max} pts
+            </strong>
           </p>
         </section>
 
