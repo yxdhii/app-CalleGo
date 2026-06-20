@@ -16,6 +16,7 @@ import {
   Pencil,
   X,
   Camera,
+  BarChart3,
 } from "lucide-react";
 
 function Profile() {
@@ -288,6 +289,12 @@ function Profile() {
       </section>
 
       <section className="profile-menu">
+        <div className="menu-item" onClick={() => navigate("/dashboard")}>
+          <BarChart3 size={20} />
+          <span>Dashboard</span>
+          <ChevronRight size={18} className="chevron-right" />
+        </div>
+
         <div className="menu-item" onClick={() => navigate("/notifications")}>
           <Bell size={20} />
           <span>Notificaciones</span>

@@ -17,7 +17,7 @@ import Badges from "./pages/Badges";
 import Help from "./pages/Help";
 import Notifications from "./pages/Notifications";
 import Alerts from "./pages/Alerts";
-
+import Dashboard from "./pages/Dashboard";
 
 import "./App.css";
 
@@ -43,6 +43,7 @@ function App() {
         <Route path="/help" element={<Help />} />
         <Route path="/notifications" element={<Notifications />} />
         <Route path="/alerts" element={<Alerts />} />
+        <Route path="/dashboard" element={<Dashboard />} />
       </Routes>
     </BrowserRouter>
   );

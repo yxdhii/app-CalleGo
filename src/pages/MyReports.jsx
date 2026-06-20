@@ -23,7 +23,8 @@ function MyReports() {
     setReports(savedReports);
 
     const reportToValidate = savedReports.find(
-      (report) => report.status !== "Verificado",
+      (report) =>
+        report.status !== "Verificado" && report.status !== "Descartado",
     );
 
     if (!reportToValidate) return;
@@ -60,11 +61,15 @@ function MyReports() {
 
   const filteredReports = reports.filter((report) => {
     if (filter === "pending") {
-      return report.status !== "Verificado";
+      return report.status !== "Verificado" && report.status !== "Descartado";
     }
 
     if (filter === "verified") {
       return report.status === "Verificado";
+    }
+
+    if (filter === "discarded") {
+      return report.status === "Descartado";
     }
 
     return true;
@@ -107,6 +112,12 @@ function MyReports() {
         >
           Verificados
         </button>
+        <button
+          className={filter === "discarded" ? "active" : ""}
+          onClick={() => setFilter("discarded")}
+        >
+          Descartados
+        </button>
       </section>
 
       <section className="reports-list">
@@ -132,11 +143,13 @@ function MyReports() {
                   <h3>{report.type}</h3>
 
                   <span
-                    className={
+                    className={`status ${
                       report.status === "Verificado"
-                        ? "status verified"
-                        : "status pending"
-                    }
+                        ? "verified"
+                        : report.status === "Descartado"
+                          ? "discarded"
+                          : "pending"
+                    }`}
                   >
                     {report.status || "En revisión"}
                   </span>
@@ -179,11 +192,13 @@ function MyReports() {
               <span className="detail-type">{selectedReport.type}</span>
 
               <span
-                className={
+                className={`status ${
                   selectedReport.status === "Verificado"
-                    ? "status verified"
-                    : "status pending"
-                }
+                    ? "verified"
+                    : selectedReport.status === "Descartado"
+                      ? "discarded"
+                      : "pending"
+                }`}
               >
                 {selectedReport.status || "En revisión"}
               </span>
