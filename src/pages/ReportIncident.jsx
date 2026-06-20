@@ -30,7 +30,9 @@ function ReportIncident() {
   const [selected, setSelected] = useState("robo");
   const [description, setDescription] = useState("");
   const [photoPreview, setPhotoPreview] = useState("");
-  const [anonymous, setAnonymous] = useState(true);
+  const [anonymous, setAnonymous] = useState(
+    JSON.parse(localStorage.getItem("callego_anonymous_default")) ?? true,
+  );
 
   const [showDescriptionPanel, setShowDescriptionPanel] = useState(false);
   const [showGpsInfo, setShowGpsInfo] = useState(false);

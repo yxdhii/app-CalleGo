@@ -28,6 +28,7 @@ function Login() {
     }
 
     setError("");
+    localStorage.setItem("isLoggedIn", "true");
     navigate("/heatmap");
   };
 

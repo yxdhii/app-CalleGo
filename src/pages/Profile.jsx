@@ -80,13 +80,7 @@ function Profile() {
   const progressPct = Math.min(100, (points / level.max) * 100);
 
   const handleLogout = () => {
-    localStorage.removeItem("user_email");
-    localStorage.removeItem("user_password");
-    localStorage.removeItem("user_name");
-    localStorage.removeItem("user_initials");
-    localStorage.removeItem("user_photo");
-    localStorage.removeItem("callego_reports");
-    localStorage.removeItem("callego_points");
+    localStorage.removeItem("isLoggedIn");
     navigate("/login");
   };
 

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   ChevronLeft,
@@ -17,6 +17,19 @@ function Privacy() {
   const [shareLocation, setShareLocation] = useState(true);
   const [anonymousDefault, setAnonymousDefault] = useState(true);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
+
+  useEffect(() => {
+    const savedLocation = JSON.parse(
+      localStorage.getItem("callego_share_location"),
+    );
+
+    const savedAnonymous = JSON.parse(
+      localStorage.getItem("callego_anonymous_default"),
+    );
+
+    if (savedLocation !== null) setShareLocation(savedLocation);
+    if (savedAnonymous !== null) setAnonymousDefault(savedAnonymous);
+  }, []);
 
   return (
     <main className="screen privacy-screen">
@@ -45,7 +58,14 @@ function Privacy() {
 
           <button
             className={`privacy-switch ${shareLocation ? "active" : ""}`}
-            onClick={() => setShareLocation(!shareLocation)}
+            onClick={() => {
+              const value = !shareLocation;
+              setShareLocation(value);
+              localStorage.setItem(
+                "callego_share_location",
+                JSON.stringify(value),
+              );
+            }}
           >
             <span></span>
           </button>
@@ -63,7 +83,14 @@ function Privacy() {
 
           <button
             className={`privacy-switch ${anonymousDefault ? "active" : ""}`}
-            onClick={() => setAnonymousDefault(!anonymousDefault)}
+            onClick={() => {
+              const value = !anonymousDefault;
+              setAnonymousDefault(value);
+              localStorage.setItem(
+                "callego_anonymous_default",
+                JSON.stringify(value),
+              );
+            }}
           >
             <span></span>
           </button>

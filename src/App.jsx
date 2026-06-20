@@ -18,6 +18,7 @@ import Help from "./pages/Help";
 import Notifications from "./pages/Notifications";
 import Alerts from "./pages/Alerts";
 import Dashboard from "./pages/Dashboard";
+import ChangePassword from "./pages/ChangePassword";
 
 import "./App.css";
 
@@ -44,6 +45,7 @@ function App() {
         <Route path="/notifications" element={<Notifications />} />
         <Route path="/alerts" element={<Alerts />} />
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/change-password" element={<ChangePassword />} />
       </Routes>
     </BrowserRouter>
   );
