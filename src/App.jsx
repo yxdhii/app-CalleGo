@@ -7,6 +7,7 @@ import Register from "./pages/Register";
 import Success from "./pages/Success";
 import HeatMap from "./pages/HeatMap";
 import ReportDetail from "./pages/ReportDetail";
+import PublicProfile from "./pages/PublicProfile";
 import RouteSelection from "./pages/RouteSelection";
 import ReportIncident from "./pages/ReportIncident";
 import ReportSuccess from "./pages/ReportSuccess";
@@ -36,6 +37,7 @@ function App() {
           <Route path="/success" element={<Success />} />
           <Route path="/heatmap" element={<HeatMap />} />
           <Route path="/report-detail" element={<ReportDetail />} />
+          <Route path="/public-profile" element={<PublicProfile />} />
           <Route path="/route-selection" element={<RouteSelection />} />
           <Route path="/report" element={<ReportIncident />} />
           <Route path="/report-success" element={<ReportSuccess />} />

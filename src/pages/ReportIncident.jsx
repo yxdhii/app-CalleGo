@@ -118,10 +118,20 @@ function ReportIncident() {
       type: selected,
       description,
       location: gpsAddress,
+      anonymous,
+
       reporter: anonymous
         ? "Ciudadano anónimo"
         : localStorage.getItem("user_name") || "Usuario CalleGo",
-      anonymous,
+
+      reporterEmail: anonymous ? null : localStorage.getItem("user_email"),
+
+      reporterPhoto: anonymous ? null : localStorage.getItem("user_photo"),
+
+      reporterInitials: anonymous
+        ? "CA"
+        : localStorage.getItem("user_initials"),
+
       photo: photoPreview,
       date: getReportDate(),
       createdAt: new Date().toISOString(),

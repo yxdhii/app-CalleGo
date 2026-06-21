@@ -15,8 +15,7 @@ function ReportDetail() {
   const location = useLocation();
 
   const reportData = location.state?.report;
-  const userPhoto =
-    location.state?.userPhoto || localStorage.getItem("user_photo");
+  
 
   const [report, setReport] = useState(reportData);
   const [myReactions, setMyReactions] = useState(
@@ -104,10 +103,23 @@ function ReportDetail() {
       </header>
 
       <section className="detail-post-card">
-        <div className="detail-user">
+        <div
+          className="detail-user clickable-user"
+          onClick={() => {
+            if (!report.anonymous) {
+              navigate("/public-profile", {
+                state: {
+                  reporter: report.reporter,
+                  reporterPhoto: report.reporterPhoto,
+                  reporterEmail: report.reporterEmail,
+                },
+              });
+            }
+          }}
+        >
           <div className="detail-avatar">
-            {!report.anonymous && userPhoto ? (
-              <img src={userPhoto} alt="Perfil" />
+            {!report.anonymous && report.reporterPhoto ? (
+              <img src={report.reporterPhoto} alt="Perfil" />
             ) : (
               <UserCircle2 size={28} />
             )}

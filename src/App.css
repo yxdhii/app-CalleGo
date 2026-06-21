@@ -2586,7 +2586,7 @@ button:active {
 }
 
 .detail-post-card {
-  margin: 14px 12px;
+  margin: 16px 12px;
   background: #1c1f2a;
   border: 0.5px solid #2e3244;
   border-radius: 18px;
@@ -2598,6 +2598,14 @@ button:active {
   display: flex;
   gap: 10px;
   align-items: center;
+}
+
+.clickable-user {
+  cursor: pointer;
+}
+
+.clickable-user:hover {
+  opacity: 0.9;
 }
 
 .detail-avatar {
@@ -2758,8 +2766,8 @@ button:active {
 }
 
 .report-detail-screen .detail-topbar {
-  height: 86px;
-  padding: 42px 18px 0;
+  height: 110px;
+  padding: 48px 18px 0;
   background: #1c1f2a;
   display: grid;
   grid-template-columns: 38px 1fr 38px;
@@ -4313,6 +4321,7 @@ button:active {
   color: white;
   overflow-y: auto;
   scrollbar-width: none;
+  padding: 72px 22px 20px;
 }
 
 .help-screen::-webkit-scrollbar {
@@ -5327,4 +5336,206 @@ button:active {
   right: -2px;
   width: 3px;
   height: 110px;
+}
+
+/* ===== PUBLIC PROFILE ===== */
+
+.public-profile-screen {
+  background: #0f1117;
+  color: white;
+  padding: 88px 18px 24px;
+  overflow-y: auto;
+  scrollbar-width: none;
+}
+
+.public-profile-top {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 22px;
+}
+
+.public-profile-top button {
+  width: 36px;
+  height: 36px;
+  border: none;
+  border-radius: 50%;
+  background: #2e3244;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.public-profile-top h2 {
+  font-size: 18px;
+  font-weight: 900;
+}
+
+.public-profile-card {
+  background: #1c1f2a;
+  border: 1px solid #2e3244;
+  border-radius: 22px;
+  padding: 22px 16px;
+  text-align: center;
+}
+
+.public-avatar-area {
+  width: 86px;
+  height: 86px;
+  margin: 0 auto;
+}
+
+.public-avatar {
+  width: 86px;
+  height: 86px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #3b82f6;
+  background: #111827;
+}
+
+.public-avatar-empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #60a5fa;
+}
+
+.public-profile-card h1 {
+  margin-top: 14px;
+  font-size: 21px;
+  font-weight: 900;
+}
+
+.public-profile-card > p {
+  margin-top: 4px;
+  font-size: 12px;
+  color: #8d9ac7;
+}
+
+.trust-pill {
+  width: fit-content;
+  margin: 14px auto 0;
+  padding: 7px 12px;
+  border-radius: 999px;
+  background: rgba(34, 197, 94, 0.12);
+  color: #4ade80;
+  border: 1px solid rgba(34, 197, 94, 0.28);
+  font-size: 11px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.public-profile-stats {
+  margin-top: 18px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.public-profile-stats article {
+  background: #16192a;
+  border: 1px solid #2e3244;
+  border-radius: 16px;
+  padding: 13px 5px;
+}
+
+.public-profile-stats strong {
+  display: block;
+  font-size: 21px;
+  color: #60a5fa;
+}
+
+.public-profile-stats span {
+  display: block;
+  margin-top: 4px;
+  font-size: 10px;
+  color: #8d9ac7;
+}
+
+.public-recognition-box {
+  margin-top: 16px;
+  background: #16192a;
+  border: 1px solid #2e3244;
+  border-radius: 16px;
+  padding: 13px 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: left;
+}
+
+.public-recognition-box span {
+  color: #8d9ac7;
+  font-size: 12px;
+}
+
+.public-recognition-box strong {
+  display: block;
+  margin-top: 4px;
+  font-size: 22px;
+}
+
+.public-recognition-box button {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 1px solid rgba(239, 68, 68, 0.5);
+  background: rgba(239, 68, 68, 0.1);
+  color: #ef4444;
+}
+
+.public-recognition-box button.recognized {
+  background: rgba(239, 68, 68, 0.25);
+}
+
+.public-reports-section {
+  margin-top: 22px;
+}
+
+.public-reports-section h3 {
+  font-size: 16px;
+  margin-bottom: 12px;
+}
+
+.public-report-card {
+  width: 100%;
+  background: #1c1f2a;
+  border: 1px solid #2e3244;
+  border-radius: 16px;
+  padding: 14px;
+  margin-bottom: 10px;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  text-align: left;
+}
+
+.public-report-card strong {
+  color: #ff4d5f;
+  font-size: 13px;
+}
+
+.public-report-card p,
+.public-report-card span {
+  margin-top: 5px;
+  color: #8d9ac7;
+  font-size: 11px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.public-empty {
+  background: #1c1f2a;
+  border: 1px solid #2e3244;
+  border-radius: 16px;
+  padding: 16px;
+  color: #8d9ac7;
+  font-size: 13px;
+  text-align: center;
 }
