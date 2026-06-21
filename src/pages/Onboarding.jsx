@@ -22,15 +22,21 @@ const slides = [
 
 function Onboarding() {
   const [current, setCurrent] = useState(0);
+  const [isAnimating, setIsAnimating] = useState(false);
   const navigate = useNavigate();
   const slide = slides[current];
 
   const nextSlide = () => {
+    if (isAnimating) return;
+    setIsAnimating(true);
+
     if (current < slides.length - 1) {
       setCurrent(current + 1);
     } else {
       navigate("/login");
     }
+
+    setTimeout(() => setIsAnimating(false), 500);
   };
 
   return (
@@ -39,7 +45,8 @@ function Onboarding() {
         Saltar
       </button>
 
-      <section className="onboarding-content">
+      <section className="onboarding-content" key={current}>
+        <div className="onboarding-glow"></div>
         <div className="circle-icon">{slide.icon}</div>
 
         <h2>{slide.title}</h2>
@@ -55,12 +62,14 @@ function Onboarding() {
         ))}
       </div>
 
-      <button className="next-button" onClick={nextSlide}>
+      <button
+        className="next-button"
+        onClick={nextSlide}
+        disabled={isAnimating}
+      >
         {current === slides.length - 1 ? "Empezar" : "Siguiente"}
         <ArrowRight size={28} />
       </button>
-
-      <div className="home-indicator"></div>
     </main>
   );
 }
