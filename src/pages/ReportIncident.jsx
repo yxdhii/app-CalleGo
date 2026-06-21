@@ -353,8 +353,6 @@ function ReportIncident() {
           </button>
         </section>
       )}
-
-      <div className="home-indicator"></div>
     </main>
   );
 }

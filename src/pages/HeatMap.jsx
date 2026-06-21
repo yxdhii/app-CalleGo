@@ -56,6 +56,23 @@ const demoRiskPoints = [
   },
 ];
 
+const savedPlaces = [
+  {
+    id: "home",
+    name: "Casa",
+    address: "Av. Las Flores, SJL",
+    lat: -12.0297,
+    lon: -77.0107,
+  },
+  {
+    id: "work",
+    name: "Trabajo",
+    address: "UTP Lima Centro",
+    lat: -12.0601,
+    lon: -77.0365,
+  },
+];
+
 function ChangeView({ position }) {
   const map = useMap();
 
@@ -81,7 +98,6 @@ function HeatMap() {
   const [searchOpen, setSearchOpen] = useState(false);
   const [suggestions, setSuggestions] = useState([]);
   const [communityReports, setCommunityReports] = useState([]);
-  const [selectedReport, setSelectedReport] = useState(null);
   const [userPhoto, setUserPhoto] = useState(null);
   const [myReactions, setMyReactions] = useState(
     JSON.parse(localStorage.getItem("callego_my_reactions")) || {},
@@ -172,8 +188,6 @@ function HeatMap() {
       "callego_my_reactions",
       JSON.stringify(updatedMyReactions),
     );
-
-    setSelectedReport((prev) => (prev ? updateReport(prev) : prev));
 
     setCommunityReports((prev) => prev.map(updateReport));
 
@@ -512,7 +526,7 @@ function HeatMap() {
           </div>
 
           <div className="recent-searches">
-            <h3>Buscar en CalleGo</h3>
+            <h3>Historial reciente</h3>
 
             {suggestions.length === 0 ? (
               <>
@@ -557,6 +571,34 @@ function HeatMap() {
               ))
             )}
           </div>
+
+          <div className="safe-destinations-card">
+            <h3>Destinos seguros sugeridos</h3>
+
+            <button
+              type="button"
+              onClick={() =>
+                getSuggestions("Mall Aventura San Juan de Lurigancho")
+              }
+            >
+              <MapPin size={20} />
+              <div>
+                <strong>Mall Aventura SJL</strong>
+                <span>Zona moderada · recomendado</span>
+              </div>
+            </button>
+
+            <button
+              type="button"
+              onClick={() => getSuggestions("Estación Bayóvar")}
+            >
+              <MapPin size={20} />
+              <div>
+                <strong>Estación Bayóvar</strong>
+                <span>Alta concurrencia · ruta sugerida</span>
+              </div>
+            </button>
+          </div>
         </section>
       )}
 
@@ -583,7 +625,15 @@ function HeatMap() {
                 key={report.id}
                 type="button"
                 className="social-report-card"
-                onClick={() => setSelectedReport(report)}
+                onClick={() =>
+                  navigate("/report-detail", {
+                    state: {
+                      report,
+                      userPhoto,
+                      myReactions,
+                    },
+                  })
+                }
               >
                 <div className="social-avatar">
                   {!report.anonymous && userPhoto ? (
@@ -627,120 +677,6 @@ function HeatMap() {
           )}
         </section>
       )}
-
-      {selectedReport && (
-        <section className="report-detail-modal">
-          <article className="detail-page">
-            <header className="detail-topbar">
-              <button type="button" onClick={() => setSelectedReport(null)}>
-                ×
-              </button>
-
-              <h2>Detalle del reporte</h2>
-
-              <span></span>
-            </header>
-
-            <section className="detail-post-card">
-              <div className="detail-user">
-                <div className="detail-avatar">
-                  {!selectedReport.anonymous && userPhoto ? (
-                    <img src={userPhoto} alt="Perfil" />
-                  ) : (
-                    <UserCircle2 size={28} />
-                  )}
-                </div>
-
-                <article>
-                  <h3>{selectedReport.reporter}</h3>
-                  <p>{selectedReport.date} · Público</p>
-                </article>
-              </div>
-
-              <strong className="detail-type">{selectedReport.type}</strong>
-
-              <p className="detail-description">
-                {selectedReport.description || "Sin descripción adicional."}
-              </p>
-
-              {selectedReport.photo ? (
-                <img
-                  src={selectedReport.photo}
-                  alt="Evidencia"
-                  className="detail-photo"
-                />
-              ) : (
-                <div className="detail-photo-placeholder">
-                  <AlertTriangle size={36} />
-                  <p>Sin evidencia fotográfica</p>
-                </div>
-              )}
-
-              <p className="detail-location">
-                <MapPin size={14} />
-                {selectedReport.location}
-              </p>
-
-              <div className="detail-stats">
-                <span style={{ display: "flex", alignItems: "center", gap: 4 }}>
-                  <Heart size={13} color="#e74c3c" fill="#e74c3c" />
-                  {selectedReport.reactions?.useful || 0}
-                </span>
-                <span style={{ display: "flex", alignItems: "center", gap: 4 }}>
-                  <CheckCircle2 size={13} color="#4dc98e" />
-                  {selectedReport.reactions?.surprised || 0}
-                </span>
-                <span style={{ display: "flex", alignItems: "center", gap: 4 }}>
-                  <AlertOctagon size={13} color="#f1c40f" />
-                  {selectedReport.reactions?.alert || 0}
-                </span>
-              </div>
-
-              <div className="detail-reactions">
-                <button
-                  className={
-                    myReactions[selectedReport.id] === "useful"
-                      ? "active useful"
-                      : ""
-                  }
-                  onClick={() => handleReaction(selectedReport.id, "useful")}
-                >
-                  <Heart size={15} />
-                  Útil
-                </button>
-
-                <button
-                  className={
-                    myReactions[selectedReport.id] === "surprised"
-                      ? "active confirmed"
-                      : ""
-                  }
-                  onClick={() => handleReaction(selectedReport.id, "surprised")}
-                >
-                  <CheckCircle2 size={15} />
-                  Confirmar
-                </button>
-
-                <button
-                  className={
-                    myReactions[selectedReport.id] === "alert"
-                      ? "active alert"
-                      : ""
-                  }
-                  onClick={() => handleReaction(selectedReport.id, "alert")}
-                >
-                  <AlertOctagon size={15} />
-                  Alerta
-                </button>
-              </div>
-            </section>
-
-            <div className="home-indicator"></div>
-          </article>
-        </section>
-      )}
-
-      <div className="home-indicator"></div>
     </main>
   );
 }

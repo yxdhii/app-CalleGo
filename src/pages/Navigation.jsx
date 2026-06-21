@@ -236,7 +236,6 @@ function Navigation() {
         </button>
       </section>
 
-      <div className="home-indicator"></div>
     </main>
   );
 }

@@ -96,8 +96,6 @@ function Login() {
           <b onClick={() => navigate("/register")}> Regístrate</b>
         </p>
       </section>
-
-      <div className="home-indicator"></div>
     </main>
   );
 }
