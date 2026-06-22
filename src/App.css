@@ -78,7 +78,8 @@ body {
   position: absolute;
   top: 92px;
   right: 50px;
-  background: none;
+  z-index: 20;
+  background: transparent;
   border: none;
   color: white;
   font-size: 16px;
@@ -1652,7 +1653,7 @@ button:active {
   position: absolute;
   inset: 0;
   z-index: 2000;
-  background: #f8fafc;
+  background: #3b6fe0;
   padding: 92px 16px 24px;
   color: #111827;
   overflow-y: auto;
@@ -1666,7 +1667,7 @@ button:active {
 .search-full-top {
   height: 58px;
   border-radius: 30px;
-  background: white;
+  background: #1c1f2a;
   box-shadow: 0 10px 28px rgba(15, 23, 42, 0.16);
   display: flex;
   align-items: center;
@@ -1686,7 +1687,7 @@ button:active {
   border: none;
   outline: none;
   font-size: 17px;
-  color: #111827;
+  color: #ffffff;
   background: transparent;
 }
 
@@ -1697,7 +1698,7 @@ button:active {
 .recent-searches,
 .safe-destinations-card {
   margin-top: 22px;
-  background: white;
+  background: #1c1f2a;
   border-radius: 24px;
   padding: 18px;
   box-shadow: 0 10px 28px rgba(15, 23, 42, 0.1);
@@ -1716,8 +1717,8 @@ button:active {
   min-height: 62px;
   border: none;
   border-bottom: 1px solid #e5e7eb;
-  background: white;
-  color: #111827;
+  background: #1c1f2a;
+  color: #ffffff;
   display: flex;
   align-items: center;
   gap: 14px;
@@ -1739,7 +1740,7 @@ button:active {
 .safe-destinations-card strong {
   display: block;
   font-size: 14px;
-  color: #111827;
+  color: #ffffff;
 }
 
 .recent-searches span,
@@ -1766,7 +1767,7 @@ button:active {
   height: 48px;
   border: none;
   border-radius: 16px;
-  background: rgba(255, 255, 255, 0.96);
+  background: #1c1f2a;
   color: #2563eb;
   font-size: 24px;
   font-weight: 700;
@@ -5375,10 +5376,75 @@ button:active {
 }
 
 /*mockup*/
+.presentation-info {
+  position: absolute;
+  left: clamp(40px, 7vw, 130px);
+  top: 45%;
+  transform: translateY(-50%);
+  width: 430px;
+  z-index: 1;
+  font-family: "Inter", "Poppins", Arial, sans-serif;
+}
+
+.presentation-tag {
+  display: block;
+  color: #2563eb;
+  font-size: 15px;
+  font-weight: 900;
+  letter-spacing: 6px;
+  margin-bottom: 18px;
+}
+
+.presentation-info h1 {
+  font-size: 88px;
+  line-height: 0.9;
+  font-weight: 950;
+  letter-spacing: -4px;
+  color: #0f172a;
+}
+
+.presentation-info h1 span {
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  text-shadow: 0 2px 10px rgba(37, 99, 235, 0.15);
+
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.presentation-info h2 {
+  margin-top: 22px;
+  font-size: 32px;
+  line-height: 1.15;
+  font-weight: 900;
+  color: #172554;
+}
+
+.presentation-info h2 span {
+  color: #2563eb;
+}
+
+.presentation-line {
+  width: 260px;
+  height: 4px;
+  border-radius: 999px;
+  margin: 16px 0 18px;
+  background: linear-gradient(90deg, #2563eb, #38bdf8);
+}
+
+.presentation-info p {
+  max-width: 450px;
+  font-size: 20px;
+  line-height: 1.45;
+  color: #64748b;
+}
+
 .phone-frame-bg {
   width: 100vw;
   height: 100vh;
-  background: #050505;
+  background:
+    radial-gradient(circle at top left, #60a5fa 0%, transparent 35%),
+    radial-gradient(circle at bottom right, #38bdf8 0%, transparent 35%),
+    #f8fafc;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -5387,6 +5453,7 @@ button:active {
 
 .phone-frame {
   position: relative;
+  z-index: 3;
   width: 430px;
   height: 932px;
   background: linear-gradient(145deg, #1c1c1e, #0a0a0a);
@@ -5718,4 +5785,353 @@ button:active {
   color: #8d9ac7;
   font-size: 13px;
   text-align: center;
+}
+
+/* ===== IPHONE HOME SCREEN ===== */
+
+.home-screen {
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 92px 22px 38px;
+  overflow: hidden;
+}
+
+.home-screen::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.08);
+  z-index: 0;
+}
+
+.home-app-grid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  column-gap: 14px;
+  row-gap: 22px;
+}
+
+.home-app-icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 7px;
+  cursor: pointer;
+}
+
+.home-app-icon span {
+  color: white;
+  font-size: 11px;
+  font-weight: 500;
+  text-align: center;
+  text-shadow: 0 1px 5px rgba(0, 0, 0, 0.75);
+  max-width: 72px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.home-app-tile {
+  width: 60px;
+  height: 60px;
+  border-radius: 14px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.18);
+}
+
+.home-app-tile img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.callego-tile {
+  background: #101828;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.callego-tile .callego-logo-img {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+}
+
+.home-dock {
+  position: absolute;
+  left: 18px;
+  right: 18px;
+  bottom: 28px;
+  height: 82px;
+  z-index: 1;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 0 16px;
+
+  border-radius: 30px;
+  background: rgba(255, 255, 255, 0.22);
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.home-dock-icon {
+  width: 58px;
+  height: 58px;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.2);
+}
+
+.home-dock-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.home-launch-overlay {
+  position: absolute;
+  z-index: 20;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: #081126;
+  pointer-events: none;
+  transition:
+    width 0.52s ease,
+    height 0.52s ease,
+    opacity 0.25s ease;
+}
+
+/*overlay modal home*/
+.app-menu {
+  position: absolute;
+  top: 330px;
+  left: 175px;
+  z-index: 30;
+  width: 170px;
+  background: rgba(28, 31, 42, 0.96);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
+}
+
+.app-menu button {
+  width: 100%;
+  padding: 13px;
+  border: none;
+  background: transparent;
+  color: white;
+  font-weight: 700;
+}
+
+.app-menu button:first-child {
+  color: #ff4d5f;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.delete-feedback-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 40;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.delete-feedback-modal {
+  background: #1c1f2a;
+  border: 1px solid #2e3244;
+  border-radius: 24px;
+  padding: 20px;
+  color: white;
+}
+
+.delete-feedback-modal h3 {
+  font-size: 20px;
+  margin-bottom: 8px;
+}
+
+.delete-feedback-modal p {
+  color: #8d9ac7;
+  font-size: 13px;
+  margin-bottom: 14px;
+}
+
+.delete-feedback-modal textarea {
+  width: 100%;
+  height: 110px;
+  resize: none;
+  border: 1px solid #2e3244;
+  border-radius: 16px;
+  background: #111827;
+  color: white;
+  padding: 12px;
+  outline: none;
+}
+
+.delete-feedback-modal button {
+  width: 100%;
+  height: 44px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 14px;
+  font-weight: 800;
+}
+
+.delete-feedback-modal button:nth-of-type(1) {
+  background: #2563eb;
+  color: white;
+}
+
+.delete-feedback-modal button:nth-of-type(2) {
+  background: #2e3244;
+  color: #d0d4e8;
+}
+
+.app-delete-menu {
+  position: absolute;
+  top: 360px;
+  left: 185px;
+  width: 170px;
+  z-index: 50;
+  background: rgba(28, 31, 42, 0.96);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.38);
+}
+
+.app-delete-menu button {
+  width: 100%;
+  height: 46px;
+  border: none;
+  background: transparent;
+  color: white;
+  font-weight: 700;
+}
+
+.app-delete-menu button:first-child {
+  color: #ff4d5f;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.delete-feedback-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 80;
+  background: rgba(0, 0, 0, 0.48);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 22px;
+}
+
+.delete-feedback-modal {
+  width: 100%;
+  background: #1c1f2a;
+  border: 1px solid #2e3244;
+  border-radius: 24px;
+  padding: 20px;
+  color: white;
+}
+
+.delete-feedback-modal h3 {
+  font-size: 21px;
+  font-weight: 900;
+  margin-bottom: 6px;
+}
+
+.delete-feedback-modal p {
+  font-size: 13px;
+  color: #8d9ac7;
+  margin-bottom: 16px;
+}
+
+.delete-reasons {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.delete-reasons button {
+  width: 100%;
+  min-height: 42px;
+  border-radius: 14px;
+  border: 1px solid #2e3244;
+  background: #111827;
+  color: #d0d4e8;
+  font-size: 13px;
+  font-weight: 700;
+  text-align: left;
+  padding: 0 14px;
+}
+
+.delete-reasons button.selected {
+  border-color: #3b82f6;
+  background: rgba(59, 130, 246, 0.18);
+  color: white;
+}
+
+.send-delete-feedback {
+  width: 100%;
+  height: 46px;
+  margin-top: 16px;
+  border: none;
+  border-radius: 14px;
+  background: #2563eb;
+  color: white;
+  font-size: 14px;
+  font-weight: 900;
+}
+
+.send-delete-feedback:disabled {
+  opacity: 0.45;
+}
+
+.cancel-delete-feedback {
+  width: 100%;
+  height: 44px;
+  margin-top: 9px;
+  border: none;
+  border-radius: 14px;
+  background: #2e3244;
+  color: #d0d4e8;
+  font-weight: 800;
+}
+
+.delete-thanks-toast {
+  position: absolute;
+  left: 24px;
+  right: 24px;
+  bottom: 120px;
+  z-index: 90;
+  background: #0f1f2d;
+  border: 1px solid #2563eb;
+  border-radius: 16px;
+  padding: 14px;
+  color: white;
+  text-align: center;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+/*oculta texto*/
+
+@media (max-width: 1200px) {
+  .presentation-info {
+    display: none;
+  }
+
+  .phone-frame-bg {
+    justify-content: center;
+  }
 }

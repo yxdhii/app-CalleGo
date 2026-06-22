@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import PhoneFrame from "./components/PhoneFrame";
+import HomeScreen from "./pages/HomeScreen";
 import Splash from "./pages/Splash";
 import Onboarding from "./pages/Onboarding";
 import Login from "./pages/Login";
@@ -30,7 +31,8 @@ function App() {
     <BrowserRouter>
       <PhoneFrame>
         <Routes>
-          <Route path="/" element={<Splash />} />
+          <Route path="/" element={<HomeScreen />} />
+          <Route path="/splash" element={<Splash />} />
           <Route path="/onboarding" element={<Onboarding />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />

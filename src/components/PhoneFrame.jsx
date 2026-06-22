@@ -1,6 +1,24 @@
 function PhoneFrame({ children }) {
   return (
     <div className="phone-frame-bg">
+      <section className="presentation-info">
+        <span className="presentation-tag">PROTOTIPO UI/UX</span>
+
+        <h1>
+          Calle<span>Go</span>
+        </h1>
+
+        <h2>Seguridad colaborativa en tiempo real</h2>
+
+        <div className="presentation-line"></div>
+
+        <p>
+          Plataforma inteligente que permite reportar incidentes, visualizar
+          zonas de riesgo y encontrar rutas más seguras mediante la
+          participación de la comunidad.
+        </p>
+      </section>
+
       <div className="phone-frame">
         <div className="phone-notch"></div>
 
