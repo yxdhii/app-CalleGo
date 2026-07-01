@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { ArrowUpRight, Check } from "lucide-react";
+import { ArrowRight, Bell, Check, Route, ShieldCheck } from "lucide-react";
 
 function Success() {
   const navigate = useNavigate();
@@ -13,34 +13,77 @@ function Success() {
 
   return (
     <main className="screen success-screen">
-      <div className="success-glow"></div>
+      <div className="success-deco dots"></div>
+      <div className="success-deco ring"></div>
+      <div className="success-deco sparkle">✦</div>
 
       <section className="success-content">
-        <div className="success-icon">
-          <Check size={54} strokeWidth={4} />
+        <div className="success-check-area">
+          <div className="success-pulse pulse-one"></div>
+          <div className="success-pulse pulse-two"></div>
+
+          <div className="success-check">
+            <Check size={58} strokeWidth={4} color="#10C978" />
+          </div>
         </div>
 
-        <h1>CalleGo</h1>
-        <p>La calle segura en tu mano</p>
+        <h1>
+          ¡Registro <span>exitoso!</span>
+        </h1>
 
-        <h2>
-          ¡Hola,
-          <br />
-          {firstName}!
-        </h2>
-
-        <p className="success-text">
-          Tu cuenta fue creada exitosamente.
-          <br />
-          Muévete más seguro por Lima.
+        <p className="success-subtitle">
+          Tu cuenta de CalleGo ha sido creada correctamente.
         </p>
 
-        <button onClick={() => navigate("/heatmap")}>
-          Ir a inicio <ArrowUpRight size={26} />
+        <div className="success-card">
+          <div className="success-item">
+            <div className="item-icon green">
+              <ShieldCheck size={27} />
+            </div>
+            <div>
+              <h3>Ya formas parte</h3>
+              <p>de una comunidad que hace la ciudad un lugar más seguro.</p>
+            </div>
+          </div>
+
+          <div className="success-divider"></div>
+
+          <div className="success-item">
+            <div className="item-icon blue">
+              <Bell size={27} />
+            </div>
+            <div>
+              <h3>Mantente alerta</h3>
+              <p>y recibe notificaciones en tiempo real.</p>
+            </div>
+          </div>
+
+          <div className="success-divider"></div>
+
+          <div className="success-item">
+            <div className="item-icon purple">
+              <Route size={27} />
+            </div>
+            <div>
+              <h3>Muévete con confianza</h3>
+              <p>usando rutas más seguras e informadas.</p>
+            </div>
+          </div>
+        </div>
+
+        <button
+          className="success-main-btn"
+          onClick={() => navigate("/heatmap")}
+        >
+          Comenzar ahora
+          <ArrowRight size={30} />
         </button>
       </section>
 
-      <div className="home-indicator"></div>
+      <div className="success-skyline"></div>
+      <div className="success-wave wave-one"></div>
+      <div className="success-wave wave-two"></div>
+      <div className="success-map-line"></div>
     </main>
   );
 }
