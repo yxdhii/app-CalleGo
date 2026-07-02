@@ -10,6 +10,8 @@ function ForgotPassword() {
   const [error, setError] = useState("");
 
   const handleSendLink = () => {
+    const savedEmail = localStorage.getItem("user_email");
+
     if (!email.trim()) {
       setError("Ingresa tu correo electrónico.");
       return;
@@ -20,9 +22,20 @@ function ForgotPassword() {
       return;
     }
 
-    localStorage.setItem("recovery_email", email);
+    if (!savedEmail) {
+      setError("No hay una cuenta registrada. Regístrate primero.");
+      return;
+    }
 
-    navigate("/recovery-sent");
+    if (email.trim().toLowerCase() !== savedEmail.toLowerCase()) {
+      setError("No existe una cuenta registrada con este correo.");
+      return;
+    }
+
+    localStorage.setItem("recovery_email", email.trim());
+    localStorage.setItem("verification_code", "123456");
+
+    navigate("/verify-code");
   };
 
   return (
@@ -39,7 +52,7 @@ function ForgotPassword() {
 
         <p className="forgot-description">
           Ingresa el correo electrónico asociado a tu cuenta y te enviaremos un
-          enlace para restablecer tu contraseña.
+          código para restablecer tu contraseña.
         </p>
 
         <label>Correo electrónico</label>
@@ -66,17 +79,17 @@ function ForgotPassword() {
           </div>
 
           <div>
-            <h3>Te enviaremos un enlace seguro</h3>
+            <h3>Código de verificación</h3>
 
             <p>
-              Revisa tu bandeja de entrada y también la carpeta de spam. El
-              enlace expirará en 15 minutos.
+              Recibirás un código de 6 dígitos en tu correo electrónico. Por tu
+              seguridad, el código expirará en 15 minutos.
             </p>
           </div>
         </div>
 
         <button className="forgot-main-btn" onClick={handleSendLink}>
-          Enviar enlace
+          Enviar código
         </button>
 
         <div className="forgot-divider">

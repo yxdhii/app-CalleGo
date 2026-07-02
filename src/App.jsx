@@ -24,7 +24,8 @@ import Alerts from "./pages/Alerts";
 import Dashboard from "./pages/Dashboard";
 import ChangePassword from "./pages/ChangePassword";
 import ForgotPassword from "./pages/ForgotPassword";
-import RecoverySent from "./pages/RecoverySent";
+import VerifyCode from "./pages/VerifyCode";
+import ResetPassword from "./pages/ResetPassword";
 
 import "./App.css";
 
@@ -57,7 +58,8 @@ function App() {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/change-password" element={<ChangePassword />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
-          <Route path="/recovery-sent" element={<RecoverySent />} />
+          <Route path="/verify-code" element={<VerifyCode />} />
+          <Route path="/reset-password" element={<ResetPassword />} />
         </Routes>
       </PhoneFrame>
     </BrowserRouter>

@@ -6887,3 +6887,378 @@ button:active {
   justify-content: center;
   gap: 8px;
 }
+
+/* RESET PASSWORD */
+
+.reset-screen {
+  background: linear-gradient(180deg, #1aa8f6 0%, #0071bd 100%);
+  padding: 92px 31px 28px;
+}
+
+.reset-back {
+  position: absolute;
+  top: 92px;
+  left: 38px;
+  border: none;
+  background: transparent;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 14px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.reset-content {
+  margin-top: 35px;
+  text-align: center;
+}
+
+.reset-logo {
+  width: 95px;
+  display: block;
+  margin: 0 auto 18px;
+}
+
+.reset-content h1 {
+  color: #ffffff;
+  font-size: 32px;
+  line-height: 1.08;
+  font-weight: 950;
+  margin: 0 0 18px;
+}
+
+.reset-description {
+  color: #ffffff;
+  font-size: 14px;
+  line-height: 1.45;
+  font-weight: 500;
+  margin: 0 auto 28px;
+  max-width: 285px;
+}
+
+.reset-content label {
+  display: block;
+  text-align: left;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+
+.reset-input-box {
+  height: 52px;
+  border-radius: 13px;
+  background: rgba(255, 255, 255, 0.26);
+  box-shadow: 0 8px 15px rgba(0, 75, 140, 0.28);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 16px;
+  color: rgba(255, 255, 255, 0.82);
+  margin-bottom: 14px;
+}
+
+.reset-input-box input {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.reset-input-box input::placeholder {
+  color: rgba(255, 255, 255, 0.58);
+}
+
+.reset-input-box button {
+  border: none;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.82);
+  display: flex;
+  cursor: pointer;
+}
+
+.password-rules {
+  margin: 4px 0 24px;
+  text-align: left;
+}
+
+.password-rules p {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-bottom: 7px;
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.password-rules p.valid {
+  color: #ffffff;
+}
+
+.password-rules p.valid svg {
+  color: #4ade80;
+  fill: #4ade80;
+}
+
+.reset-error {
+  display: block;
+  text-align: left;
+  margin: -4px 0 14px;
+  color: #ffc4d6;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.reset-main-btn {
+  width: 100%;
+  height: 52px;
+  border: none;
+  border-radius: 13px;
+  background: #ffffff;
+  color: #075fae;
+  font-size: 16px;
+  font-weight: 950;
+  cursor: pointer;
+  margin-top: 8px;
+}
+
+.reset-divider {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin: 28px 0 22px;
+}
+
+.reset-divider span {
+  flex: 1;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.34);
+}
+
+.reset-divider p {
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.reset-login-link {
+  width: 100%;
+  border: none;
+  background: transparent;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 850;
+  cursor: pointer;
+}
+
+/* VERIFY CODE */
+
+.verify-screen {
+  background: linear-gradient(180deg, #1aa8f6 0%, #0071bd 100%);
+  padding: 92px 31px 28px;
+}
+
+.verify-back {
+  position: absolute;
+  top: 92px;
+  left: 38px;
+  border: none;
+  background: transparent;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 14px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.verify-content {
+  margin-top: 48px;
+  text-align: center;
+}
+
+.verify-logo {
+  width: 92px;
+  display: block;
+  margin: 0 auto 24px;
+}
+
+.verify-content h1 {
+  color: #ffffff;
+  font-size: 34px;
+  line-height: 1.08;
+  font-weight: 950;
+  margin: 0 0 16px;
+}
+
+.verify-description {
+  color: #ffffff;
+  font-size: 15px;
+  line-height: 1.45;
+  font-weight: 500;
+  margin: 0 auto 18px;
+  max-width: 300px;
+}
+
+.verify-email-card {
+  height: 48px;
+  border-radius: 13px;
+  background: rgba(255, 255, 255, 0.26);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 900;
+  margin-bottom: 28px;
+}
+
+.verify-content label {
+  display: block;
+  text-align: left;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 800;
+  margin-bottom: 12px;
+}
+
+.code-inputs {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.code-inputs input {
+  width: 45px;
+  height: 55px;
+  border-radius: 12px;
+  border: 2px solid rgba(255, 255, 255, 0.55);
+  background: rgba(255, 255, 255, 0.18);
+  color: #ffffff;
+  text-align: center;
+  font-size: 24px;
+  font-weight: 900;
+  outline: none;
+}
+
+.code-inputs input:focus {
+  border-color: #ffffff;
+  background: rgba(255, 255, 255, 0.28);
+}
+
+.verify-error {
+  display: block;
+  margin-top: 10px;
+  color: #ffc4d6;
+  font-size: 12px;
+  font-weight: 700;
+  text-align: left;
+}
+
+.verify-main-btn {
+  width: 100%;
+  height: 52px;
+  margin-top: 28px;
+  border: none;
+  border-radius: 13px;
+  background: #ffffff;
+  color: #075fae;
+  font-size: 17px;
+  font-weight: 950;
+  cursor: pointer;
+}
+
+.verify-resend-btn {
+  width: 100%;
+  margin-top: 20px;
+  border: none;
+  background: transparent;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 850;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 7px;
+  cursor: pointer;
+}
+
+.verify-divider {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin: 28px 0 22px;
+}
+
+.verify-divider span {
+  flex: 1;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.34);
+}
+
+.verify-divider p {
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.verify-login-link {
+  width: 100%;
+  border: none;
+  background: transparent;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 850;
+  cursor: pointer;
+}
+
+.verify-modal-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 50;
+  background: rgba(6, 24, 60, 0.2);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.verify-modal {
+  width: 280px;
+  background: #ffffff;
+  border-radius: 26px;
+  padding: 28px 22px;
+  text-align: center;
+  box-shadow: 0 28px 60px rgba(5, 52, 112, 0.28);
+  animation: tripPop 0.35s ease both;
+}
+
+.verify-modal-icon {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 16px;
+  border-radius: 50%;
+  background: #dff8ec;
+  color: #10b981;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 34px;
+  font-weight: 900;
+}
+
+.verify-modal h3 {
+  margin: 0;
+  font-size: 18px;
+  color: #06183c;
+  font-weight: 900;
+}
