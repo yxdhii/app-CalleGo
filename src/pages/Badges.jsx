@@ -7,9 +7,12 @@ function Badges() {
 
   const [reportCount, setReportCount] = useState(0);
   const [points, setPoints] = useState(0);
+  const [trips, setTrips] = useState(0);
 
   useEffect(() => {
     const reports = JSON.parse(localStorage.getItem("callego_reports")) || [];
+    const savedTrips = Number(localStorage.getItem("callego_trips") || 0);
+    setTrips(savedTrips);
 
     setReportCount(reports.length);
 
@@ -48,13 +51,13 @@ function Badges() {
     {
       title: "Primer trayecto",
       description: "Completa tu primera ruta.",
-      progress: 0,
+      progress: Math.min(trips, 1),
       goal: 1,
     },
     {
       title: "Explorador urbano",
       description: "Completa 10 trayectos.",
-      progress: 0,
+      progress: Math.min(trips, 10),
       goal: 10,
     },
     {

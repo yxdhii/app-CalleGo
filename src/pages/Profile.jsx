@@ -32,6 +32,9 @@ function Profile() {
   const [photo, setPhoto] = useState(null);
   const [showPhotoModal, setShowPhotoModal] = useState(false);
   const [previewPhoto, setPreviewPhoto] = useState(null);
+  const [trips, setTrips] = useState(0);
+  const [km, setKm] = useState(0);
+  const [averageRating, setAverageRating] = useState(null);
 
   useEffect(() => {
     const name = localStorage.getItem("user_name") || "Usuario CalleGo";
@@ -58,6 +61,21 @@ function Profile() {
       0,
     );
     setPoints(totalPoints);
+
+    const savedTrips = Number(localStorage.getItem("callego_trips") || 0);
+    const savedKm = Number(localStorage.getItem("callego_km") || 0);
+    const ratingCount = Number(
+      localStorage.getItem("callego_rating_count") || 0,
+    );
+    const ratingTotal = Number(
+      localStorage.getItem("callego_rating_total") || 0,
+    );
+
+    setTrips(savedTrips);
+    setKm(savedKm);
+    setAverageRating(
+      ratingCount > 0 ? (ratingTotal / ratingCount).toFixed(1) : null,
+    );
   }, []);
 
   const getLevel = (points) => {
@@ -196,17 +214,17 @@ function Profile() {
         </div>
         <div className="stat-card">
           <MapPin size={22} className="stat-icon green" />
-          <h3>0</h3>
+          <h3>{km}</h3>
           <p>km recorridos</p>
         </div>
         <div className="stat-card">
           <Star size={22} className="stat-icon yellow" />
-          <h3>N/A</h3>
+          <h3>{averageRating ? averageRating : "N/A"}</h3>
           <p>calificación</p>
         </div>
         <div className="stat-card">
           <TrendingUp size={22} className="stat-icon blue" />
-          <h3>0</h3>
+          <h3>{trips}</h3>
           <p>trayectos</p>
         </div>
       </section>
@@ -389,8 +407,6 @@ function Profile() {
           </div>
         </div>
       )}
-
-      <div className="home-indicator"></div>
     </main>
   );
 }

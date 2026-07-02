@@ -13,9 +13,9 @@ function Success() {
 
   return (
     <main className="screen success-screen">
-      <div className="success-deco dots"></div>
-      <div className="success-deco ring"></div>
-      <div className="success-deco sparkle">✦</div>
+      <div className="success-dots"></div>
+      <div className="success-ring"></div>
+      <div className="success-sparkle">✦</div>
 
       <section className="success-content">
         <div className="success-check-area">

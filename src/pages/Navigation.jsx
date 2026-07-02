@@ -51,6 +51,13 @@ function Navigation() {
   const [routeCoords, setRouteCoords] = useState(
     location.state?.routeCoords || [],
   );
+  const [routeDistanceKm, setRouteDistanceKm] = useState(
+    location.state?.distanceKm || 0,
+  );
+
+  const [routeDurationMin, setRouteDurationMin] = useState(
+    location.state?.durationMin || 0,
+  );
 
   const transportLabel = {
     walk: "A pie",
@@ -140,6 +147,11 @@ function Navigation() {
         ]);
 
         setRouteCoords(coords);
+        const distanceKm = data.routes[0].distance / 1000;
+        const durationMin = data.routes[0].duration / 60;
+
+        setRouteDistanceKm(distanceKm);
+        setRouteDurationMin(durationMin);
       } catch (error) {
         console.log("No se pudo calcular la ruta real:", error);
         setRouteCoords([]);
@@ -213,13 +225,21 @@ function Navigation() {
         <div className="nav-stats">
           <article>
             <Clock size={18} />
-            <strong>{estimatedTime[transport]}</strong>
+            <strong>
+              {routeDurationMin > 0
+                ? `${Math.round(routeDurationMin)} min`
+                : estimatedTime[transport]}
+            </strong>
             <p>restantes</p>
           </article>
 
           <article>
             <MapPin size={18} />
-            <strong>1.8 km</strong>
+            <strong>
+              {routeDistanceKm > 0
+                ? `${routeDistanceKm.toFixed(1)} km`
+                : "Calculando"}
+            </strong>
             <p>distancia</p>
           </article>
 
@@ -230,12 +250,22 @@ function Navigation() {
           </article>
         </div>
 
-        <button onClick={() => navigate("/trip-complete")}>
+        <button
+          onClick={() =>
+            navigate("/trip-complete", {
+              state: {
+                distanceKm: routeDistanceKm,
+                durationMin: routeDurationMin,
+                routeType: selectedRoute,
+                transport,
+              },
+            })
+          }
+        >
           <NavIcon size={20} />
           Finalizar trayecto
         </button>
       </section>
-
     </main>
   );
 }
