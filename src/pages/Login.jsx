@@ -80,13 +80,11 @@ function Login() {
           }
         />
 
-        {error && (
-          <p style={{ color: "#ff6b6b", fontSize: "12px", marginTop: "-6px" }}>
-            {error}
-          </p>
-        )}
+        {error && <p className="auth-error">{error}</p>}
 
-        <p className="forgot">¿Olvidaste tu contraseña?</p>
+        <p className="forgot" onClick={() => navigate("/forgot-password")}>
+          ¿Olvidaste tu contraseña?
+        </p>
         <button className="main-auth-btn" onClick={handleLogin}>
           Iniciar sesión
         </button>

@@ -23,6 +23,7 @@ import Notifications from "./pages/Notifications";
 import Alerts from "./pages/Alerts";
 import Dashboard from "./pages/Dashboard";
 import ChangePassword from "./pages/ChangePassword";
+import ForgotPassword from "./pages/ForgotPassword";
 
 import "./App.css";
 
@@ -54,6 +55,7 @@ function App() {
           <Route path="/alerts" element={<Alerts />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/change-password" element={<ChangePassword />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
         </Routes>
       </PhoneFrame>
     </BrowserRouter>
