@@ -7262,3 +7262,74 @@ button:active {
   color: #06183c;
   font-weight: 900;
 }
+
+/* SUCCESS RESET */
+
+.reset-success-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 999;
+  background: rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(6px);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 28px;
+}
+
+.reset-success-modal {
+  width: 290px;
+  background: #fff;
+  border-radius: 26px;
+
+  padding: 30px 24px;
+
+  text-align: center;
+
+  animation: tripPop 0.35s ease;
+
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.18);
+}
+
+.reset-success-icon {
+  width: 74px;
+  height: 74px;
+
+  border-radius: 50%;
+
+  background: #e9fbf1;
+
+  color: #17b26a;
+
+  font-size: 38px;
+  font-weight: 900;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  margin: auto;
+  margin-bottom: 18px;
+}
+
+.reset-success-modal h3 {
+  margin: 0;
+
+  color: #093a67;
+
+  font-size: 21px;
+
+  font-weight: 900;
+}
+
+.reset-success-modal p {
+  margin-top: 12px;
+
+  color: #6b7280;
+
+  line-height: 1.45;
+
+  font-size: 14px;
+}

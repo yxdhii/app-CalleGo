@@ -11,6 +11,7 @@ function ResetPassword() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
+  const [showSuccess, setShowSuccess] = useState(false);
 
   const hasMinLength = password.length >= 8;
   const hasNumber = /\d/.test(password);
@@ -33,7 +34,11 @@ function ResetPassword() {
     localStorage.setItem("user_password", password);
     localStorage.removeItem("recovery_email");
 
-    navigate("/login");
+    setShowSuccess(true);
+
+    setTimeout(() => {
+      navigate("/login");
+    }, 1800);
   };
 
   return (
@@ -126,6 +131,21 @@ function ResetPassword() {
           Volver al inicio de sesión
         </button>
       </section>
+
+      {showSuccess && (
+        <div className="reset-success-overlay">
+          <div className="reset-success-modal">
+            <div className="reset-success-icon">✓</div>
+
+            <h3>¡Contraseña actualizada!</h3>
+
+            <p>
+              Tu contraseña se cambió correctamente. Ahora puedes iniciar
+              sesión.
+            </p>
+          </div>
+        </div>
+      )}
     </main>
   );
 }
