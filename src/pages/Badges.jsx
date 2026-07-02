@@ -8,6 +8,7 @@ function Badges() {
   const [reportCount, setReportCount] = useState(0);
   const [points, setPoints] = useState(0);
   const [trips, setTrips] = useState(0);
+  const [verifiedReports, setVerifiedReports] = useState(0);
 
   useEffect(() => {
     const reports = JSON.parse(localStorage.getItem("callego_reports")) || [];
@@ -15,6 +16,9 @@ function Badges() {
     setTrips(savedTrips);
 
     setReportCount(reports.length);
+    setVerifiedReports(
+      reports.filter((report) => report.verified === true).length,
+    );
 
     const totalPoints = reports.reduce((sum, report) => {
       return sum + (report.points || 0);
@@ -63,7 +67,7 @@ function Badges() {
     {
       title: "Fuente confiable",
       description: "Obtén 5 reportes verificados.",
-      progress: 0,
+      progress: Math.min(verifiedReports, 5),
       goal: 5,
     },
     {

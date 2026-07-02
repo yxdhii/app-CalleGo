@@ -39,6 +39,7 @@ function MyReports() {
               ...report,
               status: "Verificado",
               points: 5,
+              verified: true,
             }
           : report,
       );
