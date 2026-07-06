@@ -120,19 +120,19 @@ function Privacy() {
       <section className="privacy-card">
         <h3>Legal</h3>
 
-        <button className="privacy-link">
+        <button className="privacy-link" onClick={() => navigate("/privacy-policy")}>
           <FileText size={20} />
           Política de privacidad
           <span>›</span>
         </button>
 
-        <button className="privacy-link">
+        <button className="privacy-link" onClick={() => navigate("/terms")}>
           <ShieldCheck size={20} />
           Términos de uso
           <span>›</span>
         </button>
 
-        <button className="privacy-link">
+        <button className="privacy-link" onClick={() => navigate("/data-protection-law")}>
           <FileText size={20} />
           Ley N.º 29733 - Protección de datos
           <span>›</span>
