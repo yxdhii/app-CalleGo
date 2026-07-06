@@ -105,9 +105,9 @@ El proyecto está organizado como una aplicación **React + Vite** basada en com
 ```text
 app-CalleGo
 │
-├── public
-│   ├── favicon.svg
-│   └── icons.svg
+├── docs
+│   ├── logo.png
+│   └── preview.png
 │
 ├── src
 │   ├── assets
