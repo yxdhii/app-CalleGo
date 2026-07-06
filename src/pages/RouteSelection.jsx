@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import ZoomControls from "../components/ZoomControls";
+import { renderToStaticMarkup } from "react-dom/server";
+import L from "leaflet";
 import {
   MapContainer,
   TileLayer,
@@ -24,6 +26,17 @@ import {
 } from "lucide-react";
 
 const defaultOrigin = [-12.0297, -77.0107];
+const locationIcon = L.divIcon({
+  className: "custom-location-marker",
+  html: renderToStaticMarkup(
+    <div className="map-pin-wrapper">
+      <MapPin size={34} fill="#3b82f6" />
+    </div>,
+  ),
+  iconSize: [44, 44],
+  iconAnchor: [22, 44],
+  popupAnchor: [0, -40],
+});
 
 function ChangeView({ center }) {
   const map = useMap();
@@ -51,7 +64,7 @@ function RouteSelection() {
   const [origin, setOrigin] = useState(defaultOrigin);
   const [destination, setDestination] = useState(initialDestination);
 
-  const [originText, setOriginText] = useState("Ubicación no detectada");
+  const [originText, setOriginText] = useState("Ubicacion actual");
   const [destinationText, setDestinationText] = useState(
     initialDestinationText,
   );
@@ -319,12 +332,12 @@ function RouteSelection() {
         <ChangeView center={origin} />
         <ZoomControls />
 
-        <Marker position={origin}>
+        <Marker position={origin} icon={locationIcon}>
           <Popup>Origen: {originText}</Popup>
         </Marker>
 
         {destination && (
-          <Marker position={destination}>
+          <Marker position={destination} icon={locationIcon}>
             <Popup>Destino: {destinationText}</Popup>
           </Marker>
         )}
@@ -565,8 +578,6 @@ function RouteSelection() {
           </button>
         </section>
       )}
-
-      <div className="home-indicator"></div>
     </main>
   );
 }

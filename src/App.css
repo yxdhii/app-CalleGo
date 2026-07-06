@@ -1084,6 +1084,7 @@ button:active {
   gap: 8px;
   padding: 0 16px;
   cursor: pointer;
+  min-width: 0;
 }
 
 .callego-search span {
@@ -1093,6 +1094,7 @@ button:active {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  min-width: 0;
 }
 
 .map-square-btn {
@@ -1316,6 +1318,16 @@ button:active {
 .route-action:disabled {
   opacity: 0.4;
   cursor: not-allowed;
+}
+
+.custom-location-marker {
+  background: transparent;
+  border: none;
+}
+
+.map-pin-wrapper {
+  color: #2563eb;
+  filter: drop-shadow(0 6px 8px rgba(0, 0, 0, 0.35));
 }
 
 /* BANDEJA */
@@ -7422,4 +7434,15 @@ button:active {
   font-size: 15px;
   font-weight: 800;
   margin-top: 10px;
+}
+
+/*arreglos de rutas*/
+.custom-location-marker {
+  background: transparent;
+  border: none;
+}
+
+.map-pin-wrapper {
+  color: #2563eb;
+  filter: drop-shadow(0 6px 8px rgba(0, 0, 0, 0.35));
 }

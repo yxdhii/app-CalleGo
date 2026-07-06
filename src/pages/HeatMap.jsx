@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ZoomControls from "../components/ZoomControls";
+import { renderToStaticMarkup } from "react-dom/server";
+import L from "leaflet";
 import {
   MapContainer,
   TileLayer,
@@ -72,6 +74,18 @@ const savedPlaces = [
     lon: -77.0365,
   },
 ];
+
+const locationIcon = L.divIcon({
+  className: "custom-location-marker",
+  html: renderToStaticMarkup(
+    <div className="map-pin-wrapper">
+      <MapPin size={34} fill="#3b82f6" />
+    </div>,
+  ),
+  iconSize: [44, 44],
+  iconAnchor: [22, 44],
+  popupAnchor: [0, -40],
+});
 
 function ChangeView({ position }) {
   const map = useMap();
@@ -323,8 +337,8 @@ function HeatMap() {
         <ChangeView position={position} />
         <ZoomControls />
 
-        <Marker position={position}>
-          <Popup>{placeName}</Popup>
+        <Marker position={position} icon={locationIcon}>
+          <Popup>{placeName || "Ubicación seleccionada"}</Popup>
         </Marker>
 
         {filteredRiskPoints.map((point) => {
