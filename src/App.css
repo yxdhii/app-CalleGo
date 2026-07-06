@@ -1516,9 +1516,12 @@ button:active {
 
 /* ===== RUTA ===== */
 .route-map-screen {
-  background: #eef5f9;
-  color: #111827;
-  min-height: 100vh;
+  position: relative;
+  width: 390px;
+  height: 844px;
+  margin: 20px auto;
+  overflow: hidden;
+  background: #0f1117;
 }
 
 .route-map-top {
@@ -1577,7 +1580,7 @@ button:active {
   position: absolute;
   left: 14px;
   right: 14px;
-  bottom: 140px;
+  bottom: 22px;
   z-index: 999;
   background: white;
   border-radius: 28px;
